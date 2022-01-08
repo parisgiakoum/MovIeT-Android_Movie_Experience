@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MovIeT</string>
+    <string name="user_profile">User Profile</string>
 </resources>
