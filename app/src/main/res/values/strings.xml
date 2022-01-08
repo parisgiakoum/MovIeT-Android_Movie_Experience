@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MovIeT</string>
+    <string name="str_rating">Rating</string>
+    <string name="str_duration">Duration</string>
+    <string name="str_min">min</string>
+
 </resources>
