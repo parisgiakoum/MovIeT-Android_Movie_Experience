@@ -1,7 +1,6 @@
-package com.regen21.moviet.recycler_view;
+package com.regen21.moviet.Home.RecyclerView;
 
 import android.content.Context;
-import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,15 +8,19 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.regen21.moviet.Home.PopularModel;
+import com.regen21.moviet.Movie.Credits.CastModel;
+import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsMode;
+import com.regen21.moviet.Movie.MovieModel;
 import com.regen21.moviet.R;
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter <HomeViewHolder> {
 
-    private List<String> moviesImg;
+    private List<MovieModel> movies;
 
-    public HomeAdapter(List<String> moviesImg, Context context){
-        this.moviesImg = moviesImg;
+    public HomeAdapter(List<MovieModel> movies){
+        this.movies = movies;
     }
 
     @NonNull
@@ -29,11 +32,12 @@ public class HomeAdapter extends RecyclerView.Adapter <HomeViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
-
+        MovieModel data = movies.get(position);
+        holder.bind(data);
     }
 
     @Override
     public int getItemCount() {
-        return moviesImg.size();
+        return movies.size();
     }
 }

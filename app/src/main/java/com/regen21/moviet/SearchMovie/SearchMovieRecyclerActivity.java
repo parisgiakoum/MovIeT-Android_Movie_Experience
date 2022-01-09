@@ -1,4 +1,4 @@
-package com.regen21.moviet.recycler_view;
+package com.regen21.moviet.SearchMovie;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

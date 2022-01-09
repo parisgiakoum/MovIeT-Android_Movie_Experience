@@ -1,4 +1,4 @@
-package com.regen21.moviet.recycler_view;
+package com.regen21.moviet.SearchMovie;
 
 import android.content.Context;
 import android.view.LayoutInflater;

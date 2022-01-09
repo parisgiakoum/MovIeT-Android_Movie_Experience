@@ -18,13 +18,11 @@ public class CreditsAdapter extends RecyclerView.Adapter<CreditsViewHolder> {
     private List<CastModel> castData;
     private  List<CrewModel> crewData;
     CreditsMode mode;
-//    private Context context;
 
     public CreditsAdapter(List<CastModel> castData, List<CrewModel> crewData, CreditsMode mode) {
         this.castData = castData;
         this.crewData = crewData;
         this.mode = mode;
-//        this.context = context;
     }
 
     @NonNull
