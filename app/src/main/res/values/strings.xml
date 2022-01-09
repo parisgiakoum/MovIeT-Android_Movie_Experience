@@ -1,3 +1,26 @@
 <resources>
-    <string name="app_name">MovIeT</string>
+    <string name="app_name">Home</string>
+    <string name="search_hint">Search movie</string>
+    <string name="home_title_popular">Popular Movies</string>
+    <string name="home_title_latest">Latest Movies</string>
+
+    <string-array name="movies_array">
+        <item>Spiderman: No way home</item>
+        <item>Resident Evil</item>
+        <item>Matrix</item>
+        <item>Encanto</item>
+        <item>French Dispatch</item>
+        <item>Fantastic Mr. Fox</item>
+        <item>Isle of dogs</item>
+    </string-array>
+
+    <string-array name="desrciption">
+        <item>A spider that is a man</item>
+        <item>Blood, gore, monsters, loss, pain</item>
+        <item>*sLOW MoTion moVeMeNT</item>
+        <item>SEVEN FOOT FRAME, RATS ALONG HIS BACK</item>
+        <item>bEST Anderson comedy/movie</item>
+        <item>You cannot escape your nature</item>
+        <item>Human loses dog. Human wont give up until he gets dog</item>
+    </string-array>
 </resources>
