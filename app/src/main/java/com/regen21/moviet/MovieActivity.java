@@ -2,11 +2,10 @@ package com.regen21.moviet;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,17 +16,16 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 public class MovieActivity extends AppCompatActivity {
 
-    private static final String BASE_URL = "https://api.themoviedb.org/3/";
+    public static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static final String API_KEY = "f0bb1fa4a17a0c54c2a32720bf2fa03c";
-    private static final String IMG_BASE_URL = "https://image.tmdb.org/t/p/w500/";
+    public static final String IMG_BASE_URL = "https://image.tmdb.org/t/p/";
 
-
+    private Gson gson;
     private RequestQueue queue;
     @Nullable
     private MovieModel movieModel;
@@ -38,16 +36,39 @@ public class MovieActivity extends AppCompatActivity {
         setContentView(R.layout.activity_movie);
 
         queue = Volley.newRequestQueue(this);
+        gson = new Gson();
     }
 
     @Override
     public void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        int movieID=500;
-
-        // Instantiate the RequestQueue.
+        int movieID=550;
         sendIdRequest(movieID);
+
+        String movieURL = BASE_URL + "movie/" + movieID + "/credits" + "?api_key=" + API_KEY;
+
+        // Request a string response from the provided URL.
+       StringRequest stringRequest = new StringRequest(Request.Method.GET, movieURL,
+                new Response.Listener<String>() {
+                   @Override
+                    public void onResponse(String response) {
+                        CreditsModel creditsModel = gson.fromJson(response,CreditsModel.class);
+                        RecyclerView castRecyclerView = findViewById(R.id.cast_recycler);
+                        castRecyclerView.setAdapter(new MyAdapter(creditsModel.getCast()));
+                   }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MovieActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+
+
 
     }
 
@@ -75,7 +96,7 @@ public class MovieActivity extends AppCompatActivity {
     @SuppressLint("DefaultLocale")
     public void setMovie(String response) {
         // Display the first 500 characters of the response string.
-        movieModel = new Gson().fromJson(response,MovieModel.class);
+        movieModel = gson.fromJson(response,MovieModel.class);
 
         TextView txtMovieTitle = findViewById(R.id.txt_movie_title);
         txtMovieTitle.setText(movieModel.getTitle());
@@ -93,7 +114,7 @@ public class MovieActivity extends AppCompatActivity {
         txtStatus.setText(movieModel.getStatus());
 
         ImageView imgPoster = findViewById(R.id.img_poster);
-        Picasso.get().load(IMG_BASE_URL + movieModel.getPoster_path()).into(imgPoster);
+        Picasso.get().load(IMG_BASE_URL + "w500/" + movieModel.getPoster_path()).into(imgPoster);
     }
 
 
