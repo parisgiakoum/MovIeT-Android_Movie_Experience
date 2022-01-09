@@ -1,4 +1,4 @@
-package com.regen21.moviet;
+package com.regen21.moviet.Movie;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +17,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsAdapter;
+import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsMode;
+import com.regen21.moviet.Movie.Credits.CreditsModel;
+import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 
 public class MovieActivity extends AppCompatActivity {
@@ -44,39 +48,16 @@ public class MovieActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
 
         int movieID=550;
-        sendIdRequest(movieID);
-
-        String movieURL = BASE_URL + "movie/" + movieID + "/credits" + "?api_key=" + API_KEY;
-
-        // Request a string response from the provided URL.
-       StringRequest stringRequest = new StringRequest(Request.Method.GET, movieURL,
-                new Response.Listener<String>() {
-                   @Override
-                    public void onResponse(String response) {
-                        CreditsModel creditsModel = gson.fromJson(response,CreditsModel.class);
-                        RecyclerView castRecyclerView = findViewById(R.id.cast_recycler);
-                        castRecyclerView.setAdapter(new MyAdapter(creditsModel.getCast()));
-                   }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(MovieActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
-
-
-
+        sendAPIRequest(movieID);
 
     }
 
-    public void sendIdRequest(int id) {
-        String movieURL = BASE_URL + "movie/" + id + "?api_key=" + API_KEY;
+    public void sendAPIRequest(int id) {
+        // Send Movie info request
+        String URL = BASE_URL + "movie/" + id + "?api_key=" + API_KEY;
 
         // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, movieURL,
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -91,11 +72,36 @@ public class MovieActivity extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+
+
+        // Send movie credits request
+        URL = BASE_URL + "movie/" + id + "/credits" + "?api_key=" + API_KEY;
+
+        // Request a string response from the provided URL.
+        stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        CreditsModel creditsModel = gson.fromJson(response,CreditsModel.class);
+                        RecyclerView castRecyclerView = findViewById(R.id.cast_recycler);
+                        RecyclerView crewRecyclerView = findViewById(R.id.crew_recycler);
+                        castRecyclerView.setAdapter(new CreditsAdapter(creditsModel.getCast(), null, CreditsMode.CAST));
+                        crewRecyclerView.setAdapter(new CreditsAdapter(null, creditsModel.getCrew(), CreditsMode.CREW));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MovieActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 
     @SuppressLint("DefaultLocale")
     public void setMovie(String response) {
-        // Display the first 500 characters of the response string.
+        // Set basic movie UI
         movieModel = gson.fromJson(response,MovieModel.class);
 
         TextView txtMovieTitle = findViewById(R.id.txt_movie_title);

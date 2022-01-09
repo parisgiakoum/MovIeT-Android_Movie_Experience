@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovIeT">
         <activity
-            android:name=".MovieActivity"
+            android:name=".Movie.MovieActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

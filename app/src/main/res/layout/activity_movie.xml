@@ -12,7 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MovieActivity">
+        tools:context=".Movie.MovieActivity">
 
 
         <ImageView
@@ -89,6 +89,14 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/txt_overview"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/crew_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/cast_recycler"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

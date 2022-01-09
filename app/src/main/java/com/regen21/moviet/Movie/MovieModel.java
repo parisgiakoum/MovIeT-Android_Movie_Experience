@@ -1,4 +1,4 @@
-package com.regen21.moviet;
+package com.regen21.moviet.Movie;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
