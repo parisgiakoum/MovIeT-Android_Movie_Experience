@@ -3,5 +3,10 @@
     <string name="str_rating">Rating</string>
     <string name="str_duration">Duration</string>
     <string name="str_min">min</string>
+    <string name="str_crew">Minds behind it</string>
+    <string name="str_cast">Faces in it</string>
+    <string name="extended_fab_content_desc">Have you watched this?</string>
+
+
 
 </resources>

@@ -47,7 +47,7 @@ public class MovieActivity extends AppCompatActivity {
     public void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
-        int movieID=550;
+        int movieID=285;
         sendAPIRequest(movieID);
 
     }

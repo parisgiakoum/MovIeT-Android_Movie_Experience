@@ -22,7 +22,7 @@ public class CreditsViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(CastModel castData, CrewModel crewData, CreditsMode mode) {
         TextView textNameView = itemView.findViewById(R.id.txt_profile_name);
-        TextView textJobView = itemView.findViewById(R.id.txt_profile_job) ;
+        TextView textJobView = itemView.findViewById(R.id.txt_profile_job);
         ImageView imageView = itemView.findViewById(R.id.img_profile);
         if (mode == CreditsMode.CAST) {
             textNameView.setText(castData.getName());
