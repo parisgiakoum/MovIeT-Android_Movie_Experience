@@ -27,23 +27,11 @@ public class CreditsViewHolder extends RecyclerView.ViewHolder {
         if (mode == CreditsMode.CAST) {
             textNameView.setText(castData.getName());
             textJobView.setText(castData.getCharacter());
-            if (castData.getProfile_path() != null) {
-                imageView.setVisibility(View.VISIBLE);
-                Picasso.get().load(IMG_BASE_URL + "w342/" + castData.getProfile_path()).into(imageView);
-            }
-            else {
-                imageView.setVisibility(View.INVISIBLE);
-            }
+            Picasso.get().load(IMG_BASE_URL + "w342/" + castData.getProfile_path()).error(R.drawable.ic_baseline_person_24).into(imageView);
         } else {
             textNameView.setText(crewData.getName());
             textJobView.setText(crewData.getJob());
-            if (crewData.getProfile_path() != null) {
-                imageView.setVisibility(View.VISIBLE);
-                Picasso.get().load(IMG_BASE_URL + "w342/" + crewData.getProfile_path()).into(imageView);
-            }
-            else {
-                imageView.setVisibility(View.INVISIBLE);
-            }
+            Picasso.get().load(IMG_BASE_URL + "w342/" + crewData.getProfile_path()).error(R.drawable.ic_baseline_person_24).into(imageView);
         }
     }
 }

@@ -13,18 +13,18 @@
         android:theme="@style/Theme.Moviet">
         <activity
             android:name=".Home.HomeRecyclerActivity"
-            android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:exported="true"/>
         <activity
             android:name=".SearchMovie.SearchMovieRecyclerActivity"
             android:exported="true"/>
     <activity
             android:name=".Movie.MovieActivity"
-            android:exported="true"/>
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
     </application>
 
 </manifest>

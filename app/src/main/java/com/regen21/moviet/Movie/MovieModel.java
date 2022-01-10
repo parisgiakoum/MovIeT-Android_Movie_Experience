@@ -3,6 +3,8 @@ package com.regen21.moviet.Movie;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class MovieModel {
 
     private int id;
@@ -13,6 +15,8 @@ public class MovieModel {
     private int runtime;
     private String status;
     private float vote_average;
+    private String tagline;
+    private List<GenresModel> genres;
 
     public int getId() {
         return id;
@@ -78,10 +82,26 @@ public class MovieModel {
         this.vote_average = vote_average;
     }
 
+    public String getTagline() {
+        return tagline;
+    }
+
+    public void setTagline(String tagline) {
+        this.tagline = tagline;
+    }
+
+    public List<GenresModel> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<GenresModel> genres) {
+        this.genres = genres;
+    }
+
     @Override
     public String toString() {
         return "MovieModel{" +
-                "movie_id=" + id +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", release_date='" + release_date + '\'' +
                 ", overview='" + overview + '\'' +
@@ -89,6 +109,8 @@ public class MovieModel {
                 ", runtime=" + runtime +
                 ", status='" + status + '\'' +
                 ", vote_average=" + vote_average +
+                ", tagline='" + tagline + '\'' +
+                ", genres=" + genres +
                 '}';
     }
 }

@@ -10,25 +10,8 @@
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/extended_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|right"
-            android:layout_margin="16dp"
-            android:backgroundTint="@color/black"
-            android:contentDescription="@string/extended_fab_content_desc"
-            android:fadeScrollbars="true"
-            android:text="@string/app_name"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:extendMotionSpec="@android:anim/fade_in"
-            app:hoveredFocusedTranslationZ="26dp"
-            app:icon="@drawable/ic_baseline_library_add_24"
-            app:iconTint="@color/white"
-            app:rippleColor="@color/white" />
-
         <androidx.core.widget.NestedScrollView
+                android:id="@+id/nested_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fillViewport="false"
@@ -59,7 +42,7 @@
                             android:textAlignment="center"
                             android:textSize="25sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toTopOf="@id/txt_status"
+                            app:layout_constraintBottom_toTopOf="@id/txt_tagline"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/img_poster"
@@ -67,9 +50,63 @@
                             tools:text="@string/app_name" />
 
                         <TextView
+                            android:id="@+id/txt_tagline"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textStyle="italic"
+                            android:paddingBottom="15dp"
+                            app:layout_constraintBottom_toTopOf="@id/rating"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txt_movie_title"
+                            app:layout_constraintVertical_chainStyle="spread"
+                            tools:text="tagline" />
+
+                    <RatingBar
+                        android:id="@+id/rating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:numStars="10"
+                        android:stepSize="0.1"
+                        android:isIndicator="true"
+                        android:paddingBottom="10dp"
+                        app:layout_constraintTop_toBottomOf="@id/txt_tagline"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toLeftOf="@id/txt_vote_average"
+                        app:layout_constraintBottom_toTopOf="@id/txt_genres"
+                        app:layout_constraintHorizontal_chainStyle="packed"/>
+
+                    <TextView
+                        android:id="@+id/txt_vote_average"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="10dp"
+                        android:paddingRight="5dp"
+                        app:layout_constraintBottom_toTopOf="@id/txt_genres"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/rating"
+                        app:layout_constraintTop_toBottomOf="@+id/txt_tagline"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        tools:text="@string/str_rating" />
+
+                    <TextView
+                        android:id="@+id/txt_genres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        app:layout_constraintBottom_toTopOf="@id/txt_status"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rating"
+                        tools:text="genres" />
+
+                        <TextView
                             android:id="@+id/txt_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingHorizontal="16dp"
                             app:layout_constraintBottom_toTopOf="@id/txt_runtime"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -80,22 +117,11 @@
                             android:id="@+id/txt_runtime"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toTopOf="@id/txt_vote_average"
+                            app:layout_constraintBottom_toTopOf="@id/txt_overview"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/txt_status"
                             tools:text="@string/str_duration" />
-
-                        <TextView
-                            android:id="@+id/txt_vote_average"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toTopOf="@id/txt_overview"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/txt_runtime"
-                            app:layout_constraintVertical_chainStyle="spread"
-                            tools:text="@string/str_rating" />
 
                         <TextView
                             android:id="@+id/txt_overview"
@@ -105,13 +131,13 @@
                             android:textAlignment="center"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/txt_vote_average"
+                            app:layout_constraintTop_toBottomOf="@id/txt_runtime"
                             app:layout_constraintVertical_chainStyle="packed"
                             tools:text="overview" />
 
                         <TextView
                             android:id="@+id/txt_cast"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:text="@string/str_cast"
@@ -127,14 +153,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:orientation="horizontal"
+                            android:layout_marginBottom="15dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             app:layout_constraintBottom_toTopOf="@id/txt_crew"
                             app:layout_constraintTop_toBottomOf="@id/txt_cast" />
 
-
                         <TextView
                             android:id="@+id/txt_crew"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
                             android:text="@string/str_crew"
@@ -156,6 +182,25 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/black"
+        android:contentDescription="@string/extended_fab_content_desc"
+        android:fadeScrollbars="true"
+        android:text="@string/app_name"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:extendMotionSpec="@android:anim/fade_in"
+        app:hoveredFocusedTranslationZ="26dp"
+        app:icon="@drawable/ic_baseline_library_add_24"
+        app:iconTint="@color/white"
+        app:rippleColor="@color/white" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
