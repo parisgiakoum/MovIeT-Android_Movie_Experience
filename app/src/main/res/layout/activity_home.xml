@@ -7,47 +7,43 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/search_bar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="Search"
-            android:background="@color/grey"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <TextView
             android:id="@+id/popular_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/search_bar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/recycleViewPopularMovies"
             android:text="@string/home_title_popular"
             android:layout_marginTop="40dp"
-            style="@style/horizontal_recycler"/>
+            style="@style/horizontal_recycler_title"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewPopularMovies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintTop_toBottomOf="@id/popular_movies"
-            app:layout_constraintBottom_toTopOf="@id/latest_movies"
-            />
+            app:layout_constraintBottom_toTopOf="@id/top_rated_movies"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            style="@style/horizontal_recycler"/>
 
         <TextView
-            android:id="@+id/latest_movies"
+            android:id="@+id/top_rated_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/recycleViewPopularMovies"
-            android:text="@string/home_title_latest"
+            app:layout_constraintBottom_toTopOf="@id/recycleViewTopRated"
+            android:text="@string/home_title_top_rated"
             android:layout_marginTop="40dp"
-            style="@style/horizontal_recycler"/>
+            style="@style/horizontal_recycler_title"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewLatest"
+            android:id="@+id/recycleViewTopRated"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/latest_movies"
+            android:layout_height="match_parent"
             android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layout_constraintTop_toBottomOf="@id/top_rated_movies"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_marginTop="6dp"
+            style="@style/horizontal_recycler"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

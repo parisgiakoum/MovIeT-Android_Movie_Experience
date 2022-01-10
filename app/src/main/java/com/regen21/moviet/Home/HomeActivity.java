@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -16,25 +18,15 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
 import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
-import com.regen21.moviet.Movie.Credits.CreditsModel;
-import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsAdapter;
-import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsMode;
-import com.regen21.moviet.Movie.MovieActivity;
-import com.regen21.moviet.Movie.MovieModel;
 import com.regen21.moviet.R;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class HomeRecyclerActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     public static final String BASE_URL = "https://api.themoviedb.org/3/";
     private static final String API_KEY = "f0bb1fa4a17a0c54c2a32720bf2fa03c";
 
     private Gson gson;
     private RequestQueue queue;
-    @Nullable
-    private MovieModel movieModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +41,7 @@ public class HomeRecyclerActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        //Send most popular movies request
         String URL = BASE_URL + "movie/" + "popular" + "?api_key=" + API_KEY;
 
         // Request a string response from the provided URL.
@@ -58,19 +51,40 @@ public class HomeRecyclerActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         PopularModel popularModel = gson.fromJson(response,PopularModel.class);
                         RecyclerView recyclerView = findViewById(R.id.recycleViewPopularMovies);
-                        recyclerView.setAdapter(new HomeAdapter(popularModel.getResults()));
+                        recyclerView.setAdapter(new HomeAdapter(popularModel.getPopular()));
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(HomeRecyclerActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(HomeActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
 
-        //recyclerView.setAdapter(new HomeAdapter(movie_posters, this));
+
+        //Send top rated movies request
+        URL = BASE_URL + "movie/" + "top_rated" + "?api_key=" + API_KEY;
+
+        // Request a string response from the provided URL.
+        stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        TopRatedModel topRatedModel = gson.fromJson(response,TopRatedModel.class);
+                        RecyclerView recyclerView = findViewById(R.id.recycleViewTopRated);
+                        recyclerView.setAdapter(new HomeAdapter(topRatedModel.getTopRated()));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(HomeActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 
 }

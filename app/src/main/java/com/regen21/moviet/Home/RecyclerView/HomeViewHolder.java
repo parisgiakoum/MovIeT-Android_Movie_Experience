@@ -1,21 +1,20 @@
 package com.regen21.moviet.Home.RecyclerView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Bundle;
-import android.util.Log;
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.regen21.moviet.Home.PopularModel;
+import com.regen21.moviet.Movie.MovieActivity;
 import com.regen21.moviet.Movie.MovieModel;
 import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 
 public class HomeViewHolder extends RecyclerView.ViewHolder {
+
 
     public static final String IMG_BASE_URL = "https://image.tmdb.org/t/p/";
 
@@ -24,7 +23,16 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void bind(MovieModel data) {
+        Context context = itemView.getContext();
         ImageView imageView = itemView.findViewById(R.id.home_movie_poster);
-        Picasso.get().load(IMG_BASE_URL + "w500/" + data.getPoster_path()).into(imageView);
+        Picasso.get().load(IMG_BASE_URL + "w342/" + data.getPoster_path()).into(imageView);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MovieActivity.class);
+                intent.putExtra("movieID",data.getId());
+                context.startActivity(intent);
+            }
+        });
     }
 }

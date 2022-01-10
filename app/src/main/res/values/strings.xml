@@ -3,7 +3,7 @@
     <string name="str_added">MovIeD</string>
     <string name="search_hint">Search movie</string>
     <string name="home_title_popular">Popular Movies</string>
-    <string name="home_title_latest">Latest Movies</string>
+    <string name="home_title_top_rated">Top Rated Movies</string>
     <string name="str_rating">Rating</string>
     <string name="str_duration">Duration</string>
     <string name="str_min">min</string>

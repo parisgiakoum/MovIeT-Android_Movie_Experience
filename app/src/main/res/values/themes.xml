@@ -14,8 +14,20 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="horizontal_recycler">
+    <style name="horizontal_recycler_title">
         <item name="android:textColor">@color/pale_orange</item>
         <item name="android:textSize">17dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="horizontal_recycler">
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+
+    <style name="round_corners" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+        <item name="color">@color/black</item>
     </style>
 </resources>
