@@ -21,6 +21,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.gson.Gson;
+import com.regen21.moviet.Home.PopularModel;
+import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
 import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsAdapter;
 import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsMode;
 import com.regen21.moviet.Movie.Credits.CreditsModel;
@@ -97,6 +99,28 @@ public class MovieActivity extends AppCompatActivity {
                         RecyclerView crewRecyclerView = findViewById(R.id.crew_recycler);
                         castRecyclerView.setAdapter(new CreditsAdapter(creditsModel.getCast(), null, CreditsMode.CAST));
                         crewRecyclerView.setAdapter(new CreditsAdapter(null, creditsModel.getCrew(), CreditsMode.CREW));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MovieActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+        // Send movie recommendation request
+        URL = BASE_URL + "movie/" + id + "/recommendations" + "?api_key=" + API_KEY;
+
+        // Request a string response from the provided URL.
+        stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        PopularModel popularModel = gson.fromJson(response,PopularModel.class);
+                        RecyclerView recommendationRecyclerView = findViewById(R.id.recommendation_recycler);
+                        recommendationRecyclerView.setAdapter(new HomeAdapter(popularModel.getResults()));
                     }
                 }, new Response.ErrorListener() {
             @Override
