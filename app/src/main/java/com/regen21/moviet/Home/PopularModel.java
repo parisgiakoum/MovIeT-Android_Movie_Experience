@@ -17,19 +17,19 @@ public class PopularModel {
                 '}';
     }
 
-    public List<MovieModel> getResults() {
+    public List<MovieModel> getPopular() {
         return results;
     }
 
-    public void setResults(List<MovieModel> results) {
+    public void setPopular(List<MovieModel> results) {
         this.results = results;
     }
 
-    public int getPage() {
+    public int getPagePopular() {
         return page;
     }
 
-    public void setPage(int page) {
+    public void setPagePopular(int page) {
         this.page = page;
     }
 }
