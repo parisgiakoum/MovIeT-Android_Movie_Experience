@@ -121,7 +121,16 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/txt_status"
+                            android:paddingBottom="10dp"
                             tools:text="@string/str_duration" />
+
+                        <View
+                            android:id="@+id/top_ovrerview_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey"
+                            app:layout_constraintBottom_toTopOf="@id/txt_overview"
+                            app:layout_constraintTop_toBottomOf="@id/txt_runtime" />
 
                         <TextView
                             android:id="@+id/txt_overview"
@@ -132,8 +141,19 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/txt_runtime"
+                            app:layout_constraintBottom_toTopOf="@id/bottom_ovrerview_view"
                             app:layout_constraintVertical_chainStyle="packed"
+                            android:paddingVertical="10dp"
                             tools:text="overview" />
+
+                        <View
+                            android:id="@+id/bottom_ovrerview_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/grey"
+                            app:layout_constraintTop_toBottomOf="@id/txt_overview"
+                            app:layout_constraintBottom_toBottomOf="@id/txt_cast" />
+
 
                         <TextView
                             android:id="@+id/txt_cast"
@@ -146,7 +166,7 @@
                             app:layout_constraintBottom_toTopOf="@id/cast_recycler"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/txt_overview" />
+                            app:layout_constraintTop_toBottomOf="@id/bottom_ovrerview_view" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/cast_recycler"
@@ -155,7 +175,7 @@
                             android:orientation="horizontal"
                             android:layout_marginBottom="15dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            app:layout_constraintBottom_toTopOf="@id/txt_crew"
+                            app:layout_constraintBottom_toTopOf="@id/cast_recycler"
                             app:layout_constraintTop_toBottomOf="@id/txt_cast" />
 
                         <TextView
@@ -180,6 +200,7 @@
                             app:layout_constraintTop_toBottomOf="@id/txt_crew"
                             app:layout_constraintBottom_toTopOf="@id/txt_recommendation"/>
 
+
                         <TextView
                             android:id="@+id/txt_recommendation"
                             android:layout_width="wrap_content"
@@ -203,7 +224,10 @@
                             app:layout_constraintTop_toBottomOf="@id/txt_recommendation" />
 
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

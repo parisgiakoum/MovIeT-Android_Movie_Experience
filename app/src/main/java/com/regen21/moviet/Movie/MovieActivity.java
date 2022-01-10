@@ -1,6 +1,7 @@
 package com.regen21.moviet.Movie;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,10 +31,6 @@ import com.regen21.moviet.Movie.Credits.CreditsModel;
 import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class MovieActivity extends AppCompatActivity {
 
@@ -50,6 +47,8 @@ public class MovieActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
+
+        getSupportActionBar().hide();
 
         queue = Volley.newRequestQueue(this);
         gson = new Gson();
