@@ -6,6 +6,7 @@ import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,6 +44,7 @@ public class MovieActivity extends AppCompatActivity {
     private Gson gson;
     private RequestQueue queue;
     private boolean clicked = false;
+    private int movieID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,9 @@ public class MovieActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         gson = new Gson();
 
+        Intent intent = getIntent();
+        movieID = intent.getIntExtra("movieID",500);
+
     }
 
     @Override
@@ -59,7 +64,6 @@ public class MovieActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         shrinkFabOnScroll();
 
-        int movieID=500;
         sendAPIRequest(movieID);
 
     }
@@ -120,7 +124,7 @@ public class MovieActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         PopularModel popularModel = gson.fromJson(response,PopularModel.class);
                         RecyclerView recommendationRecyclerView = findViewById(R.id.recommendation_recycler);
-                        recommendationRecyclerView.setAdapter(new HomeAdapter(popularModel.getResults()));
+                        recommendationRecyclerView.setAdapter(new HomeAdapter(popularModel.getPopular()));
                     }
                 }, new Response.ErrorListener() {
             @Override
