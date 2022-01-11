@@ -4,7 +4,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/popular_movies"
@@ -19,7 +19,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewPopularMovies"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/popular_movies"
             app:layout_constraintBottom_toTopOf="@id/top_rated_movies"
@@ -39,11 +39,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleViewTopRated"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/top_rated_movies"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginTop="6dp"
             style="@style/horizontal_recycler"/>
+
+        <include layout="@layout/activity_bottom_nav"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

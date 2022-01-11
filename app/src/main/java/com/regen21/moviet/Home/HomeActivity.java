@@ -1,25 +1,35 @@
 package com.regen21.moviet.Home;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+
 import com.android.volley.VolleyError;
+
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
+
 import com.google.gson.Gson;
 import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
+import com.regen21.moviet.MovieLists.MovieListsActivity;
 import com.regen21.moviet.R;
+import com.regen21.moviet.SearchMovie.SearchMovieActivity;
+import com.regen21.moviet.UserProfile.UserActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -36,6 +46,41 @@ public class HomeActivity extends AppCompatActivity {
 
         queue = Volley.newRequestQueue(this);
         gson = new Gson();
+
+        //Find bottom nav view
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_home:
+                        break;
+
+                    case R.id.nav_search:
+                        startActivity(new Intent(getApplicationContext(), SearchMovieActivity.class));
+                        overridePendingTransition(0, 0);
+                        break;
+
+                    case R.id.nav_lists:
+                        startActivity(new Intent(getApplicationContext(), MovieListsActivity.class));
+                        overridePendingTransition(0, 0);
+                        break;
+
+                    case R.id.nav_profile:
+                        startActivity(new Intent(getApplicationContext(), UserActivity.class));
+                        overridePendingTransition(0, 0);
+                        break;
+                }
+                return true;
+            }
+        });
+
+
     }
 
     @Override
@@ -87,5 +132,9 @@ public class HomeActivity extends AppCompatActivity {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
     }
+
+
+
+
 
 }
