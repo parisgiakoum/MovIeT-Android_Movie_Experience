@@ -44,7 +44,6 @@
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/register_linear_username"
-
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -64,7 +63,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_linear_title"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconDrawable="@drawable/ic_baseline_person_login"
         app:startIconTint="@color/white">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +80,6 @@
     <com.google.android.material.textfield.TextInputLayout
 
         android:id="@+id/register_linear_email"
-
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -172,6 +170,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/aldrich"
+        android:backgroundTint="@color/grey"
+        android:textColor="@color/bez"
         android:text="@string/register_linear_verify"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"

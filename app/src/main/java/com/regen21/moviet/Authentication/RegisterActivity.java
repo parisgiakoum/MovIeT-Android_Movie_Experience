@@ -1,13 +1,15 @@
-package com.regen21.moviet;
+package com.regen21.moviet.Authentication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.regen21.moviet.R;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView already_Acc;
@@ -17,6 +19,14 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+
+        }
+
+    @Override
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+
         already_Acc = findViewById(R.id.already_acc_btn);
         reg_btn=findViewById(R.id.register_linear_back_btn);
 
@@ -34,6 +44,5 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        }
-
     }
+}

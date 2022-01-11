@@ -48,8 +48,6 @@ public class MovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie);
 
-        getSupportActionBar().hide();
-
         queue = Volley.newRequestQueue(this);
         gson = new Gson();
 

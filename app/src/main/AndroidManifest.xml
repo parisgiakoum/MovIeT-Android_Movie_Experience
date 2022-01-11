@@ -13,20 +13,20 @@
         android:theme="@style/Theme.Moviet">
         <activity
             android:name=".Home.HomeActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Authentication.RegisterActivity"
             android:windowSoftInputMode="adjustResize"
-            android:exported="false" />
+            android:exported="true" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Authentication.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".SearchMovie.SearchMovieRecyclerActivity"
             android:exported="false" />

@@ -62,7 +62,7 @@
         app:hintTextColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/login_linear_password"
         app:layout_constraintTop_toBottomOf="@id/login_linear_title"
-        app:startIconDrawable="@drawable/ic_baseline_person_24"
+        app:startIconDrawable="@drawable/ic_baseline_person_login"
         app:startIconTint="@color/white"
         tools:layout_editor_absoluteX="16dp">
 
@@ -130,6 +130,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_linear_forgot"
         style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:textColor="@color/bez"
+        android:backgroundTint="@color/grey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
@@ -150,6 +152,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
         android:fontFamily="@font/aldrich"
+        android:textColor="@color/bez"
+        android:backgroundTint="@color/grey"
         android:text="@string/create_new_account"
         android:textAllCaps="false"
         app:layout_constraintHorizontal_bias="0.497"
