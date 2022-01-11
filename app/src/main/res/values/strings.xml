@@ -3,4 +3,7 @@
     <string name="user_profile">User Profile</string>
     <string name="back">Back</string>
     <string name="user_avatar">user_avatar</string>
+    <string name="edit">Edit</string>
+    <string name="name">Name</string>
+    <string name="age">Age</string>
 </resources>
