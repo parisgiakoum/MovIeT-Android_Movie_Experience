@@ -17,6 +17,7 @@ public class MovieModel {
     private float vote_average;
     private String tagline;
     private List<GenresModel> genres;
+    private String backdrop_path;
 
     public int getId() {
         return id;
@@ -98,6 +99,14 @@ public class MovieModel {
         this.genres = genres;
     }
 
+    public String getBackdrop_path() {
+        return backdrop_path;
+    }
+
+    public void setBackdrop_path(String backdrop_path) {
+        this.backdrop_path = backdrop_path;
+    }
+
     @Override
     public String toString() {
         return "MovieModel{" +
@@ -111,6 +120,7 @@ public class MovieModel {
                 ", vote_average=" + vote_average +
                 ", tagline='" + tagline + '\'' +
                 ", genres=" + genres +
+                ", backdrop_path='" + backdrop_path + '\'' +
                 '}';
     }
 }

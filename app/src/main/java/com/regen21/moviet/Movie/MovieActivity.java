@@ -180,6 +180,9 @@ public class MovieActivity extends AppCompatActivity {
 
         ImageView imgPoster = findViewById(R.id.img_poster);
         Picasso.get().load(IMG_BASE_URL + "w500/" + movieModel.getPoster_path()).into(imgPoster);
+
+        ImageView imgBackdrop = findViewById(R.id.img_backdrop);
+        Picasso.get().load(IMG_BASE_URL + "w1280/" + movieModel.getBackdrop_path()).into(imgBackdrop);
     }
 
     public void shrinkFabOnScroll() {
