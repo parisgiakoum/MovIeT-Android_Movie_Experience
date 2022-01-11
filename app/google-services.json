@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "484175060040",
+    "project_id": "moviet-app",
+    "storage_bucket": "moviet-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484175060040:android:8dd183440a7b5c94304c7d",
+        "android_client_info": {
+          "package_name": "com.regen21.moviet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "484175060040-ppn396t0ai03kubjtlgn4981kqand5mp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoVvQINnrihJhR_3j-UVfS6wUIWLGkbrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "484175060040-ppn396t0ai03kubjtlgn4981kqand5mp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
