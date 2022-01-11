@@ -1,4 +1,4 @@
-package com.regen21.moviet.Authentication;
+package com.regen21.moviet.Authorisation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
