@@ -6,4 +6,13 @@
     <color name="grey">#282828</color>
     <color name="black">#151515</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bez">#FFB99F</color>
+    <color name="neo_blue">#4DBFFF</color>
+    <color name="dark_blue">#486A89</color>
+    <color name="light_black">#282828</color>
+    <color name="proper_black">#151515</color>
+
+
+
+
 </resources>

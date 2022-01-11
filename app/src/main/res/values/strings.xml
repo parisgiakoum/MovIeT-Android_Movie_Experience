@@ -12,5 +12,16 @@
     <string name="extended_fab_content_desc">Have you watched this?</string>
     <string name="str_null_overview">Overview is not available yet...</string>
     <string name="str_recommendations">Movies like this</string>
-
+    <string name="login_linear_title">Login to your account</string>
+    <string name="login_linear_forgot">Forgot your password?</string>
+    <string name="login_linear_btn">Login</string>
+    <string name="login_linear_edit_username">Username</string>
+    <string name="login_linear_edit_password">Password</string>
+    <string name="register_linear_title">Register</string>
+    <string name="register_linear_verify">Already have an account?</string>
+    <string name="register_linear_btn">Register</string>
+    <string name="register_linear_edit_username">Email Address</string>
+    <string name="register_linear_edit_password">Password</string>
+    <string name="ver_register_linear_edit_password">Password</string>
+    <string name="create_new_account">Create new account</string>
 </resources>

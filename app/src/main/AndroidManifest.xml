@@ -20,9 +20,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".RegisterActivity"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
             android:name=".SearchMovie.SearchMovieRecyclerActivity"
-            android:exported="false">
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Movie.MovieActivity"
             android:exported="true"/>
