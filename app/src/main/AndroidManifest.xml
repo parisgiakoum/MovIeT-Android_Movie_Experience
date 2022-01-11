@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moviet">
         <activity
+            android:name=".Authentication.RetrievePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".Authentication.TestAuthenticationFunctionalities"
             android:exported="false" />
         <activity

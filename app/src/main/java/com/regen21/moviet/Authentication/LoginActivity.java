@@ -21,7 +21,7 @@ import com.regen21.moviet.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView create_newAccount;
+    private TextView create_newAccount, forgotPassword;
     private EditText editTextEmail, editTextPassword;
     private Button login;
 
@@ -32,10 +32,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_constraint);
 
-        create_newAccount=findViewById(R.id.create_account_linear);
         login = findViewById(R.id.login_linear_login);
+        forgotPassword = findViewById(R.id.login_linear_forgot);
+        create_newAccount=findViewById(R.id.create_account_linear);
         editTextEmail = findViewById(R.id.login_linear_username_value);
         editTextPassword = findViewById(R.id.login_linear_password_value);
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                userLogin();
+            }
+        });
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, RetrievePasswordActivity.class));
+            }
+        });
 
         create_newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +60,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                userLogin();
-            }
-        });
 
         mAuth = FirebaseAuth.getInstance();
     }
