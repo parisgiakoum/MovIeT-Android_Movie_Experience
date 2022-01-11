@@ -1,4 +1,4 @@
-package com.regen21.moviet.Authorisation;
+package com.regen21.moviet.Authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -92,7 +92,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if(user.isEmailVerified()) {
                         // Redirect to home - TESTING LOGOUT HERE
-                        startActivity(new Intent(LoginActivity.this, TestAuthorisationFunctionalities.class));
+                        startActivity(new Intent(LoginActivity.this, TestAuthenticationFunctionalities.class));
                     }
                     else {
                         user.sendEmailVerification();

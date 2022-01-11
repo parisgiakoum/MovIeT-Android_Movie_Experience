@@ -12,17 +12,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Moviet">
         <activity
-            android:name=".Authorisation.TestAuthorisationFunctionalities"
+            android:name=".Authentication.TestAuthenticationFunctionalities"
             android:exported="false" />
         <activity
             android:name=".Home.HomeActivity"
             android:exported="true" />
         <activity
-            android:name=".Authorisation.RegisterActivity"
+            android:name=".Authentication.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Authorisation.LoginActivity"
+            android:name=".Authentication.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
