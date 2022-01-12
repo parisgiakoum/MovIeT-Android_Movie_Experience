@@ -15,32 +15,32 @@
         <activity android:name=".SearchMovie.SearchMovieActivity" />
         <activity android:name=".UserProfile.UserActivity"/>
         <activity
+            android:name=".Authentication.RetrievePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.TestAuthenticationFunctionalities"
+            android:exported="false" />
+        <activity
             android:name=".Home.HomeActivity"
             android:exported="true" >
-
+            android:exported="true" />
+        <activity
+            android:name=".Authentication.RegisterActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".Authentication.LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
-            android:name=".Authentication.RegisterActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" >
-        </activity>
-
-        <activity
-            android:name=".Authentication.LoginActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-
-
-        </activity>
-
+            android:name=".SearchMovie.SearchMovieRecyclerActivity"
+            android:exported="false" />
         <activity
             android:name=".Movie.MovieActivity"
             android:exported="true" />

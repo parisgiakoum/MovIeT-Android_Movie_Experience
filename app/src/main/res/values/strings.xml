@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">MovIeT</string>
+    <string name="error_default">Something wrong happened!</string>
+
+<!--    Basic user info-->
+    <string name="str_username">Username</string>
+    <string name="str_email">E-mail</string>
+    <string name="str_password">Password</string>
+
+
     <string name="str_added">MovIeD</string>
     <string name="search_hint">Search movie</string>
     <string name="home_title_popular">Popular Movies</string>
@@ -17,19 +25,11 @@
     <string name="search">Search</string>
     <string name="lists">Lists</string>
     <string name="profile">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_profile">ProfileActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_profile_user">ProfileUserActivity</string>
 
+    <!--    Authentication Strings-->
     <string name="login_linear_title">Login to your account</string>
     <string name="login_linear_forgot">Forgot your password?</string>
     <string name="login_linear_btn">Login</string>
@@ -41,5 +41,28 @@
     <string name="register_linear_edit_username">Email Address</string>
     <string name="register_linear_edit_password">Password</string>
     <string name="ver_register_linear_edit_password">Password</string>
+
+    <string name="login_title">Login to your account</string>
+    <string name="login_forgot">Forgot your password?</string>
+    <string name="login_btn">Login</string>
+    <string name="register_title">Register</string>
+    <string name="register_verify">Already have an account?</string>
     <string name="create_new_account">Create new account</string>
+    <string name="password_confirm">Confirm Password</string>
+    <string name="create_password">Create a new password</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="username_required">Username is required</string>
+    <string name="email_required">E-mail is required</string>
+    <string name="email_invalid">Please enter a valid e-mail</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_length_invalid">Password should be more than 6 characters</string>
+    <string name="email_verification">Check your e-mail to verify your account</string>
+    <string name="login_error">Failed to login! Please check your credentials</string>
+    <string name="password_verification_error">Passwords are not the same</string>
+    <string name="registration_successful">User has been registered successfully!</string>
+    <string name="registration_error">Failed to register! Try again</string>
+    <string name="retrieved_successfully">Check your e-mail to reset your password</string>
+    <string name="retrieved_error">Try Again! Something went wrong</string>
+
+
 </resources>
