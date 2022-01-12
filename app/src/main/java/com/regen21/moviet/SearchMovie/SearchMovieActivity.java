@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.regen21.moviet.Authentication.LoginActivity;
 import com.regen21.moviet.Home.HomeActivity;
 import com.regen21.moviet.MovieLists.MovieListsActivity;
 import com.regen21.moviet.R;
@@ -51,15 +54,22 @@ public class SearchMovieActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_profile:
-                        startActivity(new Intent(getApplicationContext(), UserActivity.class));
-                        overridePendingTransition(0, 0);
-                        break;
+                        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+                            startActivity(new Intent(getApplicationContext(), UserActivity.class));
+                            overridePendingTransition(0, 0);
+                            break;
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "User is not logged in", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                            overridePendingTransition(0, 0);
+                            finish();
+                            break;
+                        }
                 }
                 return true;
             }
         });
-
-
     }
 
     @Override

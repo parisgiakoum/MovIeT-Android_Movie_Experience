@@ -18,6 +18,8 @@
         android:layout_height="45dp"
         android:layout_gravity="start"
         android:padding="12dp"
+        android:focusable="true"
+        android:clickable="true"
         app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
@@ -45,7 +47,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:fontFamily="@font/aldrich"
         android:text="@string/create_new_account"
         android:textColor="@color/bez"
         android:textSize="20sp"
@@ -86,7 +87,7 @@
             android:id="@+id/register_username_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aldrich"
+            android:textStyle="italic"
             android:inputType="textEmailAddress"
             android:textColor="@color/white" />
 
@@ -123,7 +124,7 @@
             android:id="@+id/register_email_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aldrich"
+            android:textStyle="italic"
             android:inputType="textEmailAddress"
             android:textColor="@color/white" />
 
@@ -156,7 +157,7 @@
             android:id="@+id/register_password_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aldrich"
+            android:textStyle="italic"
             android:inputType="textPassword"
             android:textColor="@color/white" />
 
@@ -168,7 +169,6 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/aldrich"
         android:text="@string/register_title"
         android:textAllCaps="false"
 
@@ -186,7 +186,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:fontFamily="@font/aldrich"
         android:backgroundTint="@color/grey"
         android:textColor="@color/bez"
         android:text="@string/register_verify"
@@ -225,7 +224,7 @@
             android:id="@+id/verify_password_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/aldrich"
+            android:textStyle="italic"
             android:inputType="textPassword"
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>

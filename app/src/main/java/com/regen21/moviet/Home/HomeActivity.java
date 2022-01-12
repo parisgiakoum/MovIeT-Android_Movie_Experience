@@ -24,7 +24,9 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
+import com.regen21.moviet.Authentication.LoginActivity;
 import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
 import com.regen21.moviet.MovieLists.MovieListsActivity;
 import com.regen21.moviet.R;
@@ -72,9 +74,18 @@ public class HomeActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_profile:
-                        startActivity(new Intent(getApplicationContext(), UserActivity.class));
-                        overridePendingTransition(0, 0);
-                        break;
+                        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+                            startActivity(new Intent(getApplicationContext(), UserActivity.class));
+                            overridePendingTransition(0, 0);
+                            break;
+                        }
+                        else {
+                            Toast.makeText(HomeActivity.this, "User is not logged in", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+                            overridePendingTransition(0, 0);
+                            finish();
+                            break;
+                        }
                 }
                 return true;
             }

@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +18,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.regen21.moviet.Home.HomeActivity;
 import com.regen21.moviet.R;
 
 public class LoginActivity extends AppCompatActivity {
 
     private TextView create_newAccount, forgotPassword;
     private EditText editTextEmail, editTextPassword;
+    private ImageView back_btn;
     private Button login;
 
     private FirebaseAuth mAuth;
@@ -32,12 +35,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        back_btn = findViewById(R.id.login_back_btn);
         login = findViewById(R.id.login_btn);
         forgotPassword = findViewById(R.id.login_forgot);
         create_newAccount=findViewById(R.id.create_account);
         editTextEmail = findViewById(R.id.login_email_value);
         editTextPassword = findViewById(R.id.login_password_value);
 
+        // Back
+        back_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            }
+        });
+
+        // Login
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // Forgot Password
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,8 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         create_newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-                startActivity(intent);
+                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
             }
         });
 
@@ -101,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if(user.isEmailVerified()) {
                         // Redirect to home - TESTING LOGOUT HERE
-                        startActivity(new Intent(LoginActivity.this, TestAuthenticationFunctionalities.class));
+                        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     }
                     else {
                         user.sendEmailVerification();

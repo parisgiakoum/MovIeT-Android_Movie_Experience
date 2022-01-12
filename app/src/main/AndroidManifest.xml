@@ -18,16 +18,13 @@
             android:name=".Authentication.RetrievePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".Authentication.TestAuthenticationFunctionalities"
-            android:exported="false" />
-        <activity
             android:name=".Home.HomeActivity"
             android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Authentication.RegisterActivity"
@@ -37,6 +34,7 @@
             android:name=".Authentication.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
+
         <activity
             android:name=".Movie.MovieActivity"
             android:exported="true" />

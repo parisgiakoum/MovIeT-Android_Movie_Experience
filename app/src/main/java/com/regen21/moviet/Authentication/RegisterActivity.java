@@ -40,11 +40,18 @@ public class RegisterActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.register_back_btn);
         regBtn=findViewById(R.id.register_btn);
 
-
         editTextUsername = findViewById(R.id.register_username_value);
         editTextEmail = findViewById(R.id.register_email_value);
         editTextPassword = findViewById(R.id.register_password_value);
         editTextVerifyPassword = findViewById(R.id.verify_password_value);
+
+        // Back to login
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+            }
+        });
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +135,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
                                         Toast.makeText(RegisterActivity.this, getString(R.string.registration_successful), Toast.LENGTH_LONG).show();
-
-                                        // Redirect to home?
+                                        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                    // Redirect to home
                                     }
                                     else {
                                         Toast.makeText(RegisterActivity.this, getString(R.string.registration_error), Toast.LENGTH_LONG).show();

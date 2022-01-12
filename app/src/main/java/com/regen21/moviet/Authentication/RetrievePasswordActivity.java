@@ -3,11 +3,13 @@ package com.regen21.moviet.Authentication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +21,7 @@ public class RetrievePasswordActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
     private Button resetBtn;
+    private ImageView backBtn;
 
     FirebaseAuth auth;
 
@@ -29,8 +32,16 @@ public class RetrievePasswordActivity extends AppCompatActivity {
 
         editTextEmail = findViewById(R.id.retrieve_email_value);
         resetBtn = findViewById(R.id.reset_btn);
+        backBtn = findViewById(R.id.retrieve_back_btn);
 
         auth = FirebaseAuth.getInstance();
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            }
+        });
 
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
