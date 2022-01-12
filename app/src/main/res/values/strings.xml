@@ -2,6 +2,12 @@
     <string name="app_name">MovIeT</string>
     <string name="error_default">Something wrong happened!</string>
 
+<!--    Basic user info-->
+    <string name="str_username">Username</string>
+    <string name="str_email">E-mail</string>
+    <string name="str_password">Password</string>
+
+
     <string name="str_added">MovIeD</string>
     <string name="search_hint">Search movie</string>
     <string name="home_title_popular">Popular Movies</string>
@@ -16,18 +22,15 @@
     <string name="str_recommendations">Movies like this</string>
 
 <!--    Authentication Strings-->
-    <string name="login_linear_title">Login to your account</string>
-    <string name="login_linear_forgot">Forgot your password?</string>
-    <string name="login_linear_btn">Login</string>
-    <string name="login_linear_edit_username">Username</string>
-    <string name="login_linear_edit_password">Password</string>
-    <string name="register_linear_title">Register</string>
-    <string name="register_linear_verify">Already have an account?</string>
-    <string name="register_linear_btn">Register</string>
-    <string name="register_linear_edit_username">Email Address</string>
-    <string name="register_linear_edit_password">Password</string>
-    <string name="ver_register_linear_edit_password">Password</string>
+    <string name="login_title">Login to your account</string>
+    <string name="login_forgot">Forgot your password?</string>
+    <string name="login_btn">Login</string>
+    <string name="register_title">Register</string>
+    <string name="register_verify">Already have an account?</string>
     <string name="create_new_account">Create new account</string>
+    <string name="password_confirm">Confirm Password</string>
+    <string name="create_password">Create a new password</string>
+    <string name="reset_password">Reset Password</string>
     <string name="username_required">Username is required</string>
     <string name="email_required">E-mail is required</string>
     <string name="email_invalid">Please enter a valid e-mail</string>
@@ -40,5 +43,6 @@
     <string name="registration_error">Failed to register! Try again</string>
     <string name="retrieved_successfully">Check your e-mail to reset your password</string>
     <string name="retrieved_error">Try Again! Something went wrong</string>
+
 
 </resources>

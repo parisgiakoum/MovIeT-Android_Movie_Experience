@@ -27,8 +27,8 @@ public class RetrievePasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrieve_password);
 
-        editTextEmail = findViewById(R.id.email);
-        resetBtn = findViewById(R.id.reset);
+        editTextEmail = findViewById(R.id.retrieve_email_value);
+        resetBtn = findViewById(R.id.reset_btn);
 
         auth = FirebaseAuth.getInstance();
 

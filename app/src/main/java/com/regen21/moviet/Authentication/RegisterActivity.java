@@ -37,14 +37,14 @@ public class RegisterActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         alreadyAcc = findViewById(R.id.already_acc_btn);
-        backBtn = findViewById(R.id.register_linear_back_btn);
-        regBtn=findViewById(R.id.register_linear_btn);
+        backBtn = findViewById(R.id.register_back_btn);
+        regBtn=findViewById(R.id.register_btn);
 
 
-        editTextUsername = findViewById(R.id.register_linear_username_value);
-        editTextEmail = findViewById(R.id.register_linear_email_value);
-        editTextPassword = findViewById(R.id.register_linear_password_value);
-        editTextVerifyPassword = findViewById(R.id.register2_linear_password_value);
+        editTextUsername = findViewById(R.id.register_username_value);
+        editTextEmail = findViewById(R.id.register_email_value);
+        editTextPassword = findViewById(R.id.register_password_value);
+        editTextVerifyPassword = findViewById(R.id.verify_password_value);
 
         regBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -30,13 +30,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login_constraint);
+        setContentView(R.layout.activity_login);
 
-        login = findViewById(R.id.login_linear_login);
-        forgotPassword = findViewById(R.id.login_linear_forgot);
-        create_newAccount=findViewById(R.id.create_account_linear);
-        editTextEmail = findViewById(R.id.login_linear_username_value);
-        editTextPassword = findViewById(R.id.login_linear_password_value);
+        login = findViewById(R.id.login_btn);
+        forgotPassword = findViewById(R.id.login_forgot);
+        create_newAccount=findViewById(R.id.create_account);
+        editTextEmail = findViewById(R.id.login_email_value);
+        editTextPassword = findViewById(R.id.login_password_value);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

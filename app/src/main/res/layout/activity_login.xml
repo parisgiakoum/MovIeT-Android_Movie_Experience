@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/proper_black"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
+    android:paddingRight="16dp">
 
-    >
     <!-- Arrow -->
     <ImageView
-        android:id="@+id/login_linear_back_btn"
+        android:id="@+id/login_back_btn"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="start"
@@ -21,36 +20,52 @@
         app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
 
-
-
-    <!-- LOGIN TITLE/APP_TITLE -->
-
     <TextView
-        android:id="@+id/login_linear_title"
+        android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:fontFamily="@font/aldrich"
-        android:text="@string/login_linear_title"
-        android:textColor="@color/bez"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@id/login_linear_username"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/login_title"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside"/>
+
+    <!-- LOGIN TITLE/APP_TITLE -->
+
+    <TextView
+        android:id="@+id/login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/aldrich"
+        android:text="@string/login_title"
+        android:textColor="@color/bez"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/login_email"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_text"
         app:layout_constraintVertical_chainStyle="packed" />
+
     <!--Email Text Field-->
     <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/login_linear_username"
-
+        android:id="@+id/login_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
-        android:hint="@string/login_linear_edit_username"
+        android:hint="@string/str_email"
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/white"
         app:boxBackgroundColor="@color/dark_blue"
         app:boxCornerRadiusBottomEnd="4dp"
@@ -60,14 +75,13 @@
         app:boxStrokeColor="@color/bez"
         app:endIconContentDescription="Email"
         app:hintTextColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/login_linear_password"
-        app:layout_constraintTop_toBottomOf="@id/login_linear_title"
+        app:layout_constraintTop_toBottomOf="@id/login_title"
         app:startIconDrawable="@drawable/ic_baseline_person_login"
         app:startIconTint="@color/white"
         tools:layout_editor_absoluteX="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_linear_username_value"
+            android:id="@+id/login_email_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aldrich"
@@ -78,11 +92,11 @@
 
     <!-- Password Field -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_linear_password"
+        android:id="@+id/login_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/login_linear_edit_password"
+        android:hint="@string/str_password"
         android:textColorHint="@color/white"
         app:boxBackgroundColor="@color/dark_blue"
         app:boxCornerRadiusBottomEnd="4dp"
@@ -91,14 +105,14 @@
         app:boxCornerRadiusTopStart="4dp"
         app:boxStrokeColor="@color/bez"
         app:hintTextColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/login_linear_login"
-        app:layout_constraintTop_toBottomOf="@id/login_linear_username"
+        app:layout_constraintBottom_toTopOf="@id/login_btn"
+        app:layout_constraintTop_toBottomOf="@id/login_email"
         app:passwordToggleEnabled="true"
         app:startIconTint="@color/white"
         tools:layout_editor_absoluteX="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/login_linear_password_value"
+            android:id="@+id/login_password_value"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/aldrich"
@@ -112,23 +126,23 @@
     <!-- LOGIN BUTTON -->
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_linear_login"
+        android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/aldrich"
-        android:text="@string/login_linear_btn"
+        android:text="@string/login_btn"
         android:textAllCaps="false"
 
         app:backgroundTint="@color/neo_blue"
         app:cornerRadius="4dp"
-        app:layout_constraintBottom_toTopOf="@id/login_linear_forgot"
-        app:layout_constraintTop_toBottomOf="@id/login_linear_password"
+        app:layout_constraintBottom_toTopOf="@id/login_forgot"
+        app:layout_constraintTop_toBottomOf="@id/login_password"
         tools:layout_editor_absoluteX="16dp" />
 
     <!-- Forgot password button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/login_linear_forgot"
+        android:id="@+id/login_forgot"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:textColor="@color/bez"
         android:backgroundTint="@color/grey"
@@ -136,17 +150,17 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/aldrich"
-        android:text="@string/login_linear_forgot"
+        android:text="@string/login_forgot"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/create_account"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/login_linear_login" />
+        app:layout_constraintTop_toBottomOf="@id/login_btn" />
 
 
     <!-- Create ACC button -->
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/create_account_linear"
+        android:id="@+id/create_account"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -159,7 +173,7 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_linear_forgot" />
+        app:layout_constraintTop_toBottomOf="@+id/login_forgot" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
