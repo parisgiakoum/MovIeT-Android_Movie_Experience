@@ -18,31 +18,25 @@
             android:name=".UserProfileActivity"
             android:exported="true" />
         <activity
+            android:name=".Authentication.RetrievePasswordActivity"
+            android:exported="false" />
+        <activity
             android:name=".Home.HomeActivity"
             android:exported="true" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
         <activity
             android:name=".Authentication.RegisterActivity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" >
-        </activity>
-
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".Authentication.LoginActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
-
-
-
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".Movie.MovieActivity"
