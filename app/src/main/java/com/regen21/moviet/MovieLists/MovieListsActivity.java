@@ -26,6 +26,7 @@ public class MovieListsActivity extends AppCompatActivity {
         //Find bottom nav view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        //
         bottomNavigationView.setSelectedItemId(R.id.nav_lists);
 
         //Perform ItemSelectedListener

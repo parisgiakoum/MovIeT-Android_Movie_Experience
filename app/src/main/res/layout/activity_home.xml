@@ -1,51 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/popular_movies"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/recycleViewPopularMovies"
-            android:text="@string/home_title_popular"
-            android:layout_marginTop="40dp"
-            style="@style/horizontal_recycler_title"/>
+            android:layout_height="match_parent"
+            android:fillViewport="false"
+            android:orientation="vertical"
+            android:paddingBottom="60dp"
+            tools:context=".Home.HomeActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewPopularMovies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/popular_movies"
-            app:layout_constraintBottom_toTopOf="@id/top_rated_movies"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            style="@style/horizontal_recycler"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp">
 
-        <TextView
-            android:id="@+id/top_rated_movies"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/recycleViewPopularMovies"
-            app:layout_constraintBottom_toTopOf="@id/recycleViewTopRated"
-            android:text="@string/home_title_top_rated"
-            android:layout_marginTop="40dp"
-            style="@style/horizontal_recycler_title"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycleViewTopRated"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/top_rated_movies"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:layout_marginTop="6dp"
-            style="@style/horizontal_recycler"/>
+                <TextView
+                        android:id="@+id/popular_movies"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="90dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@id/recycleViewPopularMovies"
+                        android:text="@string/home_title_popular"
+                        style="@style/horizontal_recycler_title"/>
 
-        <include layout="@layout/activity_bottom_nav"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewPopularMovies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/popular_movies"
+                    app:layout_constraintBottom_toTopOf="@id/top_rated_movies"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    style="@style/horizontal_recycler"/>
+
+                <TextView
+                    android:id="@+id/top_rated_movies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/recycleViewPopularMovies"
+                    app:layout_constraintBottom_toTopOf="@id/recycleViewTopRated"
+                    android:text="@string/home_title_top_rated"
+                    android:layout_marginTop="40dp"
+                    style="@style/horizontal_recycler_title"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewTopRated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/top_rated_movies"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="6dp"
+                    style="@style/horizontal_recycler"/>
+
+                <TextView
+                    android:id="@+id/upcoming_movies"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/recycleViewTopRated"
+                    android:text="@string/home_title_upcoming"
+                    android:layout_marginTop="40dp"
+                    style="@style/horizontal_recycler_title"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycleViewUpcoming"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/upcoming_movies"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:layout_marginTop="6dp"
+                    style="@style/horizontal_recycler"/>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    <include layout="@layout/activity_bottom_nav"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

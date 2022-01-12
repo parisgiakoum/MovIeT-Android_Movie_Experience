@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="pale_orange">#FFB99F</color>
-    <color name="light_blue">#4DBFFF</color>
+    <color name="pale_orange">#FF9168</color>
+    <color name="light_blue">#82C0DD</color>
     <color name="darker_blue">#486A89</color>
     <color name="grey">#282828</color>
     <color name="black">#151515</color>
@@ -12,8 +12,5 @@
     <color name="dark_blue">#486A89</color>
     <color name="light_black">#282828</color>
     <color name="proper_black">#151515</color>
-
-
-
 
 </resources>

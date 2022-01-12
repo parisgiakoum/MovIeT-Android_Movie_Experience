@@ -2,7 +2,6 @@ package com.regen21.moviet.Home;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,7 +30,7 @@ import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
 import com.regen21.moviet.MovieLists.MovieListsActivity;
 import com.regen21.moviet.R;
 import com.regen21.moviet.SearchMovie.SearchMovieActivity;
-import com.regen21.moviet.UserProfile.UserActivity;
+import com.regen21.moviet.UserProfile.UserProfile;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -75,7 +74,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     case R.id.nav_profile:
                         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-                            startActivity(new Intent(getApplicationContext(), UserActivity.class));
+                            startActivity(new Intent(getApplicationContext(), UserProfile.class));
                             overridePendingTransition(0, 0);
                             break;
                         }
@@ -132,6 +131,29 @@ public class HomeActivity extends AppCompatActivity {
                         TopRatedModel topRatedModel = gson.fromJson(response,TopRatedModel.class);
                         RecyclerView recyclerView = findViewById(R.id.recycleViewTopRated);
                         recyclerView.setAdapter(new HomeAdapter(topRatedModel.getTopRated()));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(HomeActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+
+
+        //Send upcoming movies request
+        URL = BASE_URL + "movie/" + "upcoming" + "?api_key=" + API_KEY;
+
+        // Request a string response from the provided URL.
+        stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        UpcomingModel upcomingModel = gson.fromJson(response,UpcomingModel.class);
+                        RecyclerView recyclerView = findViewById(R.id.recycleViewUpcoming);
+                        recyclerView.setAdapter(new HomeAdapter(upcomingModel.getUpcoming()));
                     }
                 }, new Response.ErrorListener() {
             @Override

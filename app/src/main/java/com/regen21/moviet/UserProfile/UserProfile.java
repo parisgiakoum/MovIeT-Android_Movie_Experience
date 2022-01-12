@@ -1,4 +1,4 @@
-package com.regen21.moviet;
+package com.regen21.moviet.UserProfile;
 
 public class UserProfile {
 

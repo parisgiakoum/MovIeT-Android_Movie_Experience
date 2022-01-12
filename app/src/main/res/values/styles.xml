@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="bottom_nav" parent="">
-        <item name="elevation">3dp</item>
-        <item name="itemRippleColor">@color/darker_blue</item>
-        <item name="itemIconSize">30dp</item>
-        <item name="background">@color/grey</item>
-        <item name="labelVisibilityMode">unlabeled</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowTranslucentNavigation">true</item>
-        <item name="android:fitsSystemWindows">true</item>
-    </style>
 
     <style name="horizontal_recycler_title">
-        <item name="android:textColor">@color/pale_orange</item>
+        <item name="android:textColor">@color/light_blue</item>
         <item name="android:textSize">17dp</item>
         <item name="android:layout_marginLeft">10dp</item>
     </style>
@@ -27,5 +16,10 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">5dp</item>
         <item name="color">@color/black</item>
+    </style>
+
+    <style name="RatingBar">
+        <item name="colorControlNormal">@color/grey</item>
+        <item name="colorControlActivated">@color/light_blue</item>
     </style>
 </resources>

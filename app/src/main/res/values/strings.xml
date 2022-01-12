@@ -9,9 +9,13 @@
 
 
     <string name="str_added">MovIeD</string>
-    <string name="search_hint">Search movie</string>
+
+    <!-- Strings used for hone activity -->
     <string name="home_title_popular">Popular Movies</string>
     <string name="home_title_top_rated">Top Rated Movies</string>
+    <string name="home_title_upcoming">Upcoming Movies</string>
+
+    <!-- Strings used for Movie activity -->
     <string name="str_rating">Rating</string>
     <string name="str_duration">Duration</string>
     <string name="str_min">min</string>
@@ -21,10 +25,13 @@
     <string name="str_null_overview">Overview is not available yet...</string>
     <string name="str_recommendations">Movies like this</string>
 
+    <!-- Strings used for nav menu -->
     <string name="home">Home</string>
     <string name="search">Search</string>
     <string name="lists">Lists</string>
     <string name="profile">Profile</string>
+
+    <!-- Strings used for login -->
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_profile_user">ProfileUserActivity</string>
@@ -49,6 +56,7 @@
     <string name="register_verify">Already have an account?</string>
     <string name="create_new_account">Create new account</string>
 
+    <!-- Strings used for user -->
     <string name="user_profile">User Profile</string>
     <string name="back">Back</string>
     <string name="user_avatar">user_avatar</string>

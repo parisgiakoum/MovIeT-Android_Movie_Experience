@@ -70,6 +70,8 @@ public class SearchMovieActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+
     }
 
     @Override
