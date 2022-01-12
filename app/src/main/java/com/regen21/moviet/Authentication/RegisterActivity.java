@@ -70,46 +70,46 @@ public class RegisterActivity extends AppCompatActivity {
 
         if(username.isEmpty())
         {
-            editTextUsername.setError("Username is required");
+            editTextUsername.setError(getString(R.string.username_required));
             editTextUsername.requestFocus();
             return;
         }
 
         if(email.isEmpty())
         {
-            editTextEmail.setError("E-mail is required");
+            editTextEmail.setError(getString(R.string.email_required));
             editTextEmail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please provide a valid e-mail address");
+            editTextEmail.setError(getString(R.string.email_invalid));
             editTextEmail.requestFocus();
             return;
         }
 
         if(password.isEmpty())
         {
-            editTextPassword.setError("Password is required");
+            editTextPassword.setError(getString(R.string.password_required));
             editTextPassword.requestFocus();
             return;
         }
 
         if(password.length() < 6) {
-            editTextPassword.setError("Password should be more than 6 characters");
+            editTextPassword.setError(getString(R.string.password_length_invalid));
             editTextPassword.requestFocus();
             return;
         }
 
         if(verifyPassword.isEmpty())
         {
-            editTextVerifyPassword.setError("Password verification is required");
+            editTextVerifyPassword.setError(getString(R.string.password_required));
             editTextVerifyPassword.requestFocus();
             return;
         }
 
         if(!verifyPassword.equals(password)) {
-            editTextVerifyPassword.setError("Passwords are not the same");
+            editTextVerifyPassword.setError(getString(R.string.password_verification_error));
             editTextVerifyPassword.requestFocus();
             return;
         }
@@ -127,19 +127,19 @@ public class RegisterActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()) {
-                                        Toast.makeText(RegisterActivity.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, getString(R.string.registration_successful), Toast.LENGTH_LONG).show();
 
                                         // Redirect to home?
                                     }
                                     else {
-                                        Toast.makeText(RegisterActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(RegisterActivity.this, getString(R.string.registration_error), Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
                         }
 
                         else {
-                            Toast.makeText(RegisterActivity.this, "Failed to register! Try again!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, getString(R.string.registration_error), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

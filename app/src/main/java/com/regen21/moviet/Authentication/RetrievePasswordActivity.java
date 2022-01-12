@@ -44,13 +44,13 @@ public class RetrievePasswordActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString().trim();
 
         if (email.isEmpty()) {
-            editTextEmail.setError("Email is required!");
+            editTextEmail.setError(getString(R.string.email_required));
             editTextEmail.requestFocus();
             return;
         }
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please provide a valid email");
+            editTextEmail.setError(getString(R.string.email_invalid));
             editTextEmail.requestFocus();
             return;
         }
@@ -59,10 +59,10 @@ public class RetrievePasswordActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(RetrievePasswordActivity.this, "Check your email to reset your password", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RetrievePasswordActivity.this, getString(R.string.retrieved_successfully), Toast.LENGTH_LONG).show();
                 }
                 else {
-                    Toast.makeText(RetrievePasswordActivity.this, "Try Again! Something went wrong", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RetrievePasswordActivity.this, getString(R.string.retrieved_error), Toast.LENGTH_LONG).show();
                 }
             }
         });

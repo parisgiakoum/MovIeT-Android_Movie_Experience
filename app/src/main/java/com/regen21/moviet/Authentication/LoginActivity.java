@@ -69,25 +69,25 @@ public class LoginActivity extends AppCompatActivity {
         String password = editTextPassword.getText().toString().trim();
 
         if(email.isEmpty()) {
-            editTextEmail.setError("E-mail is required");
+            editTextEmail.setError(getString(R.string.email_required));
             editTextEmail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            editTextEmail.setError("Please enter a valid email");
+            editTextEmail.setError(getString(R.string.email_invalid));
             editTextEmail.requestFocus();
             return;
         }
 
         if(password.isEmpty()) {
-            editTextPassword.setError("Password is required");
+            editTextPassword.setError(getString(R.string.password_required));
             editTextPassword.requestFocus();
             return;
         }
 
         if(password.length() < 6) {
-            editTextPassword.setError("Password should be more than 6 characters");
+            editTextPassword.setError(getString(R.string.password_length_invalid));
             editTextPassword.requestFocus();
             return;
         }
@@ -105,11 +105,11 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else {
                         user.sendEmailVerification();
-                        Toast.makeText(LoginActivity.this, "Check your e-mail to verify your account", Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this, getString(R.string.email_verification), Toast.LENGTH_LONG).show();
                     }
                 }
                 else {
-                    Toast.makeText(LoginActivity.this, "Failed to login! Please check your credentials", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, getString(R.string.login_error), Toast.LENGTH_LONG).show();
                 }
             }
         });

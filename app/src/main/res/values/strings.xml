@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MovIeT</string>
+    <string name="error_default">Something wrong happened!</string>
+
     <string name="str_added">MovIeD</string>
     <string name="search_hint">Search movie</string>
     <string name="home_title_popular">Popular Movies</string>
@@ -12,6 +14,8 @@
     <string name="extended_fab_content_desc">Have you watched this?</string>
     <string name="str_null_overview">Overview is not available yet...</string>
     <string name="str_recommendations">Movies like this</string>
+
+<!--    Authentication Strings-->
     <string name="login_linear_title">Login to your account</string>
     <string name="login_linear_forgot">Forgot your password?</string>
     <string name="login_linear_btn">Login</string>
@@ -24,4 +28,17 @@
     <string name="register_linear_edit_password">Password</string>
     <string name="ver_register_linear_edit_password">Password</string>
     <string name="create_new_account">Create new account</string>
+    <string name="username_required">Username is required</string>
+    <string name="email_required">E-mail is required</string>
+    <string name="email_invalid">Please enter a valid e-mail</string>
+    <string name="password_required">Password is required</string>
+    <string name="password_length_invalid">Password should be more than 6 characters</string>
+    <string name="email_verification">Check your e-mail to verify your account</string>
+    <string name="login_error">Failed to login! Please check your credentials</string>
+    <string name="password_verification_error">Passwords are not the same</string>
+    <string name="registration_successful">User has been registered successfully!</string>
+    <string name="registration_error">Failed to register! Try again</string>
+    <string name="retrieved_successfully">Check your e-mail to reset your password</string>
+    <string name="retrieved_error">Try Again! Something went wrong</string>
+
 </resources>

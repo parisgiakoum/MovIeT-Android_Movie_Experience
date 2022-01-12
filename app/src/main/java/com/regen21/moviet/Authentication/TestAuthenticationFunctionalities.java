@@ -77,7 +77,7 @@ public class TestAuthenticationFunctionalities extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(TestAuthenticationFunctionalities.this, "Something Wrong Happened!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TestAuthenticationFunctionalities.this, getString(R.string.error_default), Toast.LENGTH_SHORT).show();
             }
         });
 
