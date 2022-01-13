@@ -8,34 +8,35 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.regen21.moviet.Home.RecyclerView.HomeViewHolder;
+import com.regen21.moviet.Movie.MovieModel;
 import com.regen21.moviet.R;
 
 import java.util.List;
 
 public class SearchMovieAdapter extends RecyclerView.Adapter<SearchMovieViewHolder> {
-    private List<String> arrayData;
-    private Context context;
+    private List<MovieModel> movies;
 
-    public SearchMovieAdapter(List<String> arrayData, Context context){
-        this.arrayData = arrayData;
-        this.context = context;
+    public SearchMovieAdapter(List<MovieModel> movies){
+        this.movies = movies;
     }
 
     @NonNull
     @Override
     public SearchMovieViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.holder_movie_search_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.holder_movie_search_item, parent, false);
         return new SearchMovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull SearchMovieViewHolder holder, int position) {
-        String data = arrayData.get(position);
+        MovieModel data = movies.get(position);
         holder.bind(data);
     }
 
     @Override
     public int getItemCount() {
-        return arrayData.size();
+        return movies.size();
     }
 }
+
