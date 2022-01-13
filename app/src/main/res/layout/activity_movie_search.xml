@@ -15,6 +15,6 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         />
 
-    <include layout="@layout/activity_bottom_nav" />
+    <include layout="@layout/activity_menus" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

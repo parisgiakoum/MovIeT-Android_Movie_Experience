@@ -15,7 +15,7 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="LISTs ACTIVITY"/>
 
-    <include layout="@layout/activity_bottom_nav"/>
+    <include layout="@layout/activity_menus"/>
 
 
 

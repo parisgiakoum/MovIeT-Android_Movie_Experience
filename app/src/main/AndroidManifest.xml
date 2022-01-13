@@ -15,7 +15,7 @@
         <activity android:name=".MovieLists.MovieListsActivity" />
         <activity android:name=".SearchMovie.SearchMovieActivity" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".UserProfile.UserActivity"
             android:exported="true" />
         <activity
             android:name=".Authentication.RetrievePasswordActivity"

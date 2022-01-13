@@ -87,6 +87,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
-    <include layout="@layout/activity_bottom_nav"/>
+    <include layout="@layout/activity_menus"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

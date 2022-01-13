@@ -20,8 +20,7 @@ import com.regen21.moviet.R;
 public class RetrievePasswordActivity extends AppCompatActivity {
 
     private EditText editTextEmail;
-    private Button resetBtn;
-    private ImageView backBtn;
+    private Button resetBtn, backBtn;
 
     FirebaseAuth auth;
 

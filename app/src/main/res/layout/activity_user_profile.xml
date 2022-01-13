@@ -71,7 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <include
-        layout="@layout/activity_bottom_nav"
+        layout="@layout/activity_menus"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-16dp" />
 

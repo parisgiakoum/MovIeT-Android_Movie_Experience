@@ -24,8 +24,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private TextView alreadyAcc;
-    private ImageView backBtn;
-    private Button regBtn;
+    private Button regBtn, backBtn;
     private EditText editTextUsername, editTextEmail, editTextPassword, editTextVerifyPassword;
 
     @Override

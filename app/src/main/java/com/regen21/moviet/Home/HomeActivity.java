@@ -30,7 +30,7 @@ import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
 import com.regen21.moviet.MovieLists.MovieListsActivity;
 import com.regen21.moviet.R;
 import com.regen21.moviet.SearchMovie.SearchMovieActivity;
-import com.regen21.moviet.UserProfile.UserProfile;
+import com.regen21.moviet.UserProfile.UserActivity;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -48,12 +48,10 @@ public class HomeActivity extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         gson = new Gson();
 
+
         //Find bottom nav view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //
         bottomNavigationView.setSelectedItemId(R.id.nav_home);
-
         //Perform ItemSelectedListener
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -74,7 +72,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     case R.id.nav_profile:
                         if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-                            startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                            startActivity(new Intent(getApplicationContext(), UserActivity.class));
                             overridePendingTransition(0, 0);
                             break;
                         }
