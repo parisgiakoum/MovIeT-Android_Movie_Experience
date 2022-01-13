@@ -3,6 +3,7 @@ package com.regen21.moviet.SearchMovie;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -10,9 +11,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.regen21.moviet.Authentication.LoginActivity;
@@ -97,6 +100,7 @@ public class SearchMovieActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycleViewMovieList);
 
         recyclerView.setAdapter(new SearchMovieAdapter(getDataList(), this));
+
     }
 
     private List<String> getDataList(){
@@ -106,4 +110,9 @@ public class SearchMovieActivity extends AppCompatActivity {
         }
         return list;
     }
+
+
 }
+
+
+
