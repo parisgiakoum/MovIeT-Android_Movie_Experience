@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,10 +31,25 @@ public class SearchMovieActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_search);
 
+
+        // MENUS
+        Button logoutBnt = findViewById(R.id.logout_btn);
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            logoutBnt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(getApplicationContext(), getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
+                    logoutBnt.setVisibility(View.GONE);
+                }
+            });
+        }
+        else {
+            logoutBnt.setVisibility(View.GONE);
+        }
+
         //Find bottom nav view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-
         bottomNavigationView.setSelectedItemId(R.id.nav_search);
 
         //Perform ItemSelectedListener

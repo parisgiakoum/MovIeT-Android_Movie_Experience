@@ -31,24 +31,8 @@
     <string name="lists">Lists</string>
     <string name="profile">Profile</string>
 
-    <!-- Strings used for login -->
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="title_activity_profile_user">ProfileUserActivity</string>
-
     <!--    Authentication Strings-->
-    <string name="login_linear_title">Login to your account</string>
-    <string name="login_linear_forgot">Forgot your password?</string>
-    <string name="login_linear_btn">Login</string>
-    <string name="login_linear_edit_username">Username</string>
-    <string name="login_linear_edit_password">Password</string>
-    <string name="register_linear_title">Register</string>
-    <string name="register_linear_verify">Already have an account?</string>
-    <string name="register_linear_btn">Register</string>
-    <string name="register_linear_edit_username">Email Address</string>
-    <string name="register_linear_edit_password">Password</string>
-    <string name="ver_register_linear_edit_password">Password</string>
-
+    <string name="logout_success">You have been successfully logged out!</string>
     <string name="login_title">Login to your account</string>
     <string name="login_forgot">Forgot your password?</string>
     <string name="login_btn">Login</string>

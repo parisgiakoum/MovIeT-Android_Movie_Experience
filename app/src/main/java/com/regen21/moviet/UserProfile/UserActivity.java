@@ -36,17 +36,6 @@ public class UserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
-        // Logout Functionality
-        Button logoutBtn = findViewById(R.id.logout_btn);
-
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(UserActivity.this, HomeActivity.class));
-            }
-        });
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
@@ -74,6 +63,22 @@ public class UserActivity extends AppCompatActivity {
                 Toast.makeText(UserActivity.this, getString(R.string.error_default), Toast.LENGTH_LONG).show();
             }
         });
+
+        // MENUS
+        Button logoutBnt = findViewById(R.id.logout_btn);
+        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
+            logoutBnt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(getApplicationContext(), getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
+                    logoutBnt.setVisibility(View.GONE);
+                }
+            });
+        }
+        else {
+            logoutBnt.setVisibility(View.GONE);
+        }
 
         //Find bottom nav view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
