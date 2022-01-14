@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">MovIeT</string>
     <string name="error_default">Something wrong happened!</string>
+    <string name="unknown">unknown</string>
 
-<!--    Basic user info-->
+
+    <!--    Basic user info-->
     <string name="str_username">Username</string>
     <string name="str_email">E-mail</string>
     <string name="str_password">Password</string>
@@ -27,7 +29,7 @@
 
     <!-- Strings used for nav menu -->
     <string name="home">Home</string>
-    <string name="search">Search</string>
+    <string name="search">Search movie</string>
     <string name="lists">Lists</string>
     <string name="profile">Profile</string>
 

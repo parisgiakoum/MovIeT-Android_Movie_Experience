@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,8 @@ public class SearchMovieActivity extends AppCompatActivity {
 
     private Gson gson;
     private RequestQueue queue;
+    private RecyclerView recyclerView;
+    private PopularModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class SearchMovieActivity extends AppCompatActivity {
 
         SearchView searchView = findViewById(R.id.search);
 
+        recyclerView = findViewById(R.id.recycleViewMovieList);
         queue = Volley.newRequestQueue(this);
         gson = new Gson();
 
@@ -113,18 +117,39 @@ public class SearchMovieActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+        setPopular();
 
+        SearchView searchView = findViewById(R.id.search);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.isEmpty()) {
+                    setPopular();
+                }
+                else {
+                    setSearch(newText);
+                }
+                return false;
+            }
+        });
+}
+
+    public void setSearch(String query) {
         //Send most popular movies request
-        String URL = BASE_URL + "movie/" + "popular" + "?api_key=" + API_KEY;
+        String URL = BASE_URL + "search/movie" + "?api_key=" + API_KEY + "&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        PopularModel popularModel = gson.fromJson(response,PopularModel.class);
-                        RecyclerView recyclerView = findViewById(R.id.recycleViewMovieList);
-                        recyclerView.setAdapter(new SearchMovieAdapter(popularModel.getPopular()));
+                        model = gson.fromJson(response, PopularModel.class);
+                        recyclerView.setAdapter(new SearchMovieAdapter(model.getPopular()));
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -135,6 +160,28 @@ public class SearchMovieActivity extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
 
+    public void setPopular() {
+        //Send most popular movies request
+        String URL = BASE_URL + "movie/" + "popular" + "?api_key=" + API_KEY;
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        model = gson.fromJson(response, PopularModel.class);
+                        recyclerView.setAdapter(new SearchMovieAdapter(model.getPopular()));
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
     }
 }

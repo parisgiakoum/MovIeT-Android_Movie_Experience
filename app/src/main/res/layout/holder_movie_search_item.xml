@@ -17,15 +17,19 @@
 
     <TextView
         android:id="@+id/holder_list_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/holder_list_img"
+        app:layout_constraintTop_toTopOf="@id/holder_list_img"
+        app:layout_constraintBottom_toTopOf="@id/holder_list_year"
         app:layout_constraintLeft_toRightOf="@id/holder_list_img"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/holder_list_img"
-        app:layout_constraintTop_toTopOf="@+id/holder_list_img"
+        app:layout_constraintRight_toLeftOf="@id/holder_list_save_icon"
+        app:layout_constraintStart_toEndOf="@id/holder_list_img"
+        app:layout_constraintEnd_toStartOf="@id/holder_list_save_icon"
+        android:layout_marginRight="80dp"
+        android:layout_marginLeft="80dp"
+        android:paddingVertical="8dp"
         app:layout_constraintVertical_bias="0.416"
         tools:text="Parasite" />
 
@@ -36,9 +40,8 @@
         tools:text="2019"
         android:textColor="@color/white"
         app:layout_constraintLeft_toRightOf="@id/holder_list_img"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/holder_list_img"
-        app:layout_constraintTop_toBottomOf="@id/holder_list_title" />
+        app:layout_constraintTop_toBottomOf="@id/holder_list_title"
+        app:layout_constraintBottom_toBottomOf="@id/holder_list_img" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/holder_list_save_icon"

@@ -34,6 +34,7 @@ public class SearchMovieViewHolder extends RecyclerView.ViewHolder {
         Context context = itemView.getContext();
 
         TextView title = itemView.findViewById(R.id.holder_list_title);
+        String temp = data.getTitle();
         title.setText(data.getTitle());
         title.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +46,13 @@ public class SearchMovieViewHolder extends RecyclerView.ViewHolder {
         });
 
         TextView year = itemView.findViewById(R.id.holder_list_year);
-        year.setText(data.getRelease_date().substring(0,4));
+        if (!data.getRelease_date().isEmpty()) {
+            year.setText(data.getRelease_date().substring(0, 4));
+        }
+        else
+        {
+            year.setText("");
+        }
 
         ImageView imageView = itemView.findViewById(R.id.holder_list_img);
         Picasso.get().load(IMG_BASE_URL + "w342/" + data.getPoster_path()).into(imageView);
