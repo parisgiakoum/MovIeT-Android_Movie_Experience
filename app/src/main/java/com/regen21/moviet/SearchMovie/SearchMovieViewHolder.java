@@ -34,24 +34,29 @@ public class SearchMovieViewHolder extends RecyclerView.ViewHolder {
         Context context = itemView.getContext();
 
         TextView title = itemView.findViewById(R.id.holder_list_title);
-        String temp = data.getTitle();
-        title.setText(data.getTitle());
-        title.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, MovieActivity.class);
-                intent.putExtra("movieID",data.getId());
-                context.startActivity(intent);
-            }
-        });
-
-        TextView year = itemView.findViewById(R.id.holder_list_year);
-        if (!data.getRelease_date().isEmpty()) {
-            year.setText(data.getRelease_date().substring(0, 4));
+        if(!data.getTitle().isEmpty()) {
+            title.setText(data.getTitle());
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, MovieActivity.class);
+                    intent.putExtra("movieID", data.getId());
+                    context.startActivity(intent);
+                }
+            });
         }
         else
         {
+            title.setText("");
+        }
+
+        TextView year = itemView.findViewById(R.id.holder_list_year);
+        if (data.getRelease_date().length() < 4) {
             year.setText("");
+        }
+        else
+        {
+            year.setText(data.getRelease_date().substring(0, 4));
         }
 
         ImageView imageView = itemView.findViewById(R.id.holder_list_img);

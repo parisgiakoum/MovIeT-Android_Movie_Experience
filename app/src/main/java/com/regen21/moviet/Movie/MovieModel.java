@@ -1,22 +1,33 @@
 package com.regen21.moviet.Movie;
 
+import android.content.Context;
+
+import androidx.annotation.Nullable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.regen21.moviet.R;
 
 import java.util.List;
 
 public class MovieModel {
 
+    private Context context;
     private int id;
     private String title;
     private String release_date;
+    @Nullable
     private String overview;
+    @Nullable
     private String poster_path;
+    @Nullable
     private int runtime;
     private String status;
     private float vote_average;
+    @Nullable
     private String tagline;
     private List<GenresModel> genres;
+    @Nullable
     private String backdrop_path;
 
     public int getId() {
@@ -36,7 +47,12 @@ public class MovieModel {
     }
 
     public String getRelease_date() {
-        return release_date;
+        if (release_date !=null) {
+            return release_date;
+        }
+        else {
+            return "";
+        }
     }
 
     public void setRelease_date(String release_date) {
