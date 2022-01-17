@@ -29,6 +29,7 @@ public class MovieModel {
     private List<GenresModel> genres;
     @Nullable
     private String backdrop_path;
+    private int vote_count;
 
     public int getId() {
         return id;
@@ -139,6 +140,14 @@ public class MovieModel {
         this.backdrop_path = backdrop_path;
     }
 
+    public int getVote_count() {
+        return vote_count;
+    }
+
+    public void setVote_count(int vote_count) {
+        this.vote_count = vote_count;
+    }
+
     @Override
     public String toString() {
         return "MovieModel{" +
@@ -153,6 +162,7 @@ public class MovieModel {
                 ", tagline='" + tagline + '\'' +
                 ", genres=" + genres +
                 ", backdrop_path='" + backdrop_path + '\'' +
+                ", vote_count=" + vote_count +
                 '}';
     }
 }

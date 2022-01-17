@@ -176,6 +176,8 @@ public class MovieActivity extends AppCompatActivity {
             ratingBar.setRating(movieModel.getVote_average());
             TextView txtVoteAverage = findViewById(R.id.txt_vote_average);
             txtVoteAverage.setText(String.valueOf(movieModel.getVote_average()));
+            TextView txtVoteCount = findViewById(R.id.txt_vote_count);
+            txtVoteCount.setText("(" + movieModel.getVote_count() + " " + getString(R.string.str_votes) + ")");
         } else {
             ratingBar.setVisibility(View.GONE);
         }

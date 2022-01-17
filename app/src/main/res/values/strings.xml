@@ -26,6 +26,8 @@
     <string name="extended_fab_content_desc">Have you watched this?</string>
     <string name="str_null_overview">Overview is not available yet...</string>
     <string name="str_recommendations">Movies like this</string>
+    <string name="str_votes">votes</string>
+
 
     <!-- Strings used for nav menu -->
     <string name="home">Home</string>
