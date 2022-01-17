@@ -1,12 +1,10 @@
-package com.regen21.moviet.Movie;
+package com.regen21.moviet.models;
 
 import android.content.Context;
 
 import androidx.annotation.Nullable;
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
-import com.regen21.moviet.R;
+import com.regen21.moviet.models.GenresModel;
 
 import java.util.List;
 

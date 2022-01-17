@@ -1,4 +1,4 @@
-package com.regen21.moviet.Movie.Credits.RecyclerView;
+package com.regen21.moviet.utils;
 
 import android.view.View;
 import android.widget.ImageView;
@@ -7,8 +7,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.regen21.moviet.Movie.Credits.CastModel;
-import com.regen21.moviet.Movie.Credits.CrewModel;
+import com.regen21.moviet.adapters.CreditsMode;
+import com.regen21.moviet.models.creditModels.CastModel;
+import com.regen21.moviet.models.creditModels.CrewModel;
 import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 

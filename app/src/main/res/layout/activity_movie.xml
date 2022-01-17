@@ -14,7 +14,7 @@
                 android:layout_height="match_parent"
                 android:fillViewport="false"
                 android:orientation="vertical"
-                tools:context=".Movie.MovieActivity">
+                tools:context=".activities.MovieActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

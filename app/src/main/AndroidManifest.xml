@@ -12,16 +12,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Moviet">
-        <activity android:name=".MovieLists.MovieListsActivity" />
-        <activity android:name=".SearchMovie.SearchMovieActivity" />
+        <activity android:name=".activities.MovieListsActivity" />
+        <activity android:name=".activities.SearchMovieActivity" />
         <activity
-            android:name=".UserProfile.UserActivity"
+            android:name=".activities.UserActivity"
             android:exported="true" />
         <activity
-            android:name=".Authentication.RetrievePasswordActivity"
+            android:name=".activities.authentication.RetrievePasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".Home.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,16 +30,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Authentication.RegisterActivity"
+            android:name=".activities.authentication.RegisterActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".Authentication.LoginActivity"
+            android:name=".activities.authentication.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize" />
 
         <activity
-            android:name=".Movie.MovieActivity"
+            android:name=".activities.MovieActivity"
             android:exported="true" />
     </application>
 

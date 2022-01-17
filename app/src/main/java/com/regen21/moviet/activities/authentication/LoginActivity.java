@@ -1,4 +1,4 @@
-package com.regen21.moviet.Authentication;
+package com.regen21.moviet.activities.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,6 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.regen21.moviet.Home.HomeActivity;
 import com.regen21.moviet.R;
+import com.regen21.moviet.activities.HomeActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         create_newAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this,RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
             }
         });
 

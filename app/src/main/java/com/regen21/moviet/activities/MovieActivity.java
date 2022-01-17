@@ -1,7 +1,6 @@
-package com.regen21.moviet.Movie;
+package com.regen21.moviet.activities;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,12 +23,12 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.gson.Gson;
-import com.regen21.moviet.Home.HomeActivity;
-import com.regen21.moviet.Home.PopularModel;
-import com.regen21.moviet.Home.RecyclerView.HomeAdapter;
-import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsAdapter;
-import com.regen21.moviet.Movie.Credits.RecyclerView.CreditsMode;
-import com.regen21.moviet.Movie.Credits.CreditsModel;
+import com.regen21.moviet.models.MovieResultsModel;
+import com.regen21.moviet.adapters.HomeAdapter;
+import com.regen21.moviet.adapters.CreditsAdapter;
+import com.regen21.moviet.adapters.CreditsMode;
+import com.regen21.moviet.models.creditModels.CreditsModel;
+import com.regen21.moviet.models.MovieModel;
 import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 
@@ -137,12 +136,12 @@ public class MovieActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        PopularModel popularModel = gson.fromJson(response,PopularModel.class);
-                        if (!popularModel.getPopular().isEmpty()) {
+                        MovieResultsModel movieResultsModel = gson.fromJson(response, MovieResultsModel.class);
+                        if (!movieResultsModel.getResults().isEmpty()) {
                             TextView textViewRecommendation = findViewById(R.id.txt_recommendation);
                             textViewRecommendation.setText(getString(R.string.str_recommendations));
                             RecyclerView recommendationRecyclerView = findViewById(R.id.recommendation_recycler);
-                            recommendationRecyclerView.setAdapter(new HomeAdapter(popularModel.getPopular()));
+                            recommendationRecyclerView.setAdapter(new HomeAdapter(movieResultsModel.getResults()));
                         }
                     }
                 }, new Response.ErrorListener() {

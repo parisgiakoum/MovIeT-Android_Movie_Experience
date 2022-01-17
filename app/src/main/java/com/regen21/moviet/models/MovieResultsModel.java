@@ -1,11 +1,10 @@
-package com.regen21.moviet.Home;
+package com.regen21.moviet.models;
 
-import com.regen21.moviet.Movie.MovieActivity;
-import com.regen21.moviet.Movie.MovieModel;
+import com.regen21.moviet.models.MovieModel;
 
 import java.util.List;
 
-public class PopularModel {
+public class MovieResultsModel {
     private List<MovieModel> results;
     private int page;
 
@@ -17,19 +16,22 @@ public class PopularModel {
                 '}';
     }
 
-    public List<MovieModel> getPopular() {
+    public List<MovieModel> getResults() {
         return results;
     }
 
-    public void setPopular(List<MovieModel> results) {
+    public void setResults(List<MovieModel> results) {
         this.results = results;
     }
 
-    public int getPagePopular() {
+    public int getPage() {
         return page;
     }
 
-    public void setPagePopular(int page) {
+    public void setPage(int page) {
         this.page = page;
     }
+
 }
+
+

@@ -1,21 +1,17 @@
-package com.regen21.moviet.SearchMovie;
+package com.regen21.moviet.utils;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.content.Intent;
-import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.regen21.moviet.Movie.MovieActivity;
-import com.regen21.moviet.Movie.MovieModel;
+import com.regen21.moviet.activities.MovieActivity;
+import com.regen21.moviet.models.MovieModel;
 import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 

@@ -1,4 +1,4 @@
-package com.regen21.moviet.UserProfile;
+package com.regen21.moviet.activities;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -8,11 +8,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.regen21.moviet.Authentication.User;
-import com.regen21.moviet.Home.HomeActivity;
-import com.regen21.moviet.MovieLists.MovieListsActivity;
+import com.regen21.moviet.models.User;
 import com.regen21.moviet.R;
-import com.regen21.moviet.SearchMovie.SearchMovieActivity;
+import com.regen21.moviet.utils.MenuHandler;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +33,8 @@ public class UserActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        MenuHandler menuHandler = new MenuHandler(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -64,52 +64,6 @@ public class UserActivity extends AppCompatActivity {
             }
         });
 
-        // MENUS
-        Button logoutBnt = findViewById(R.id.logout_btn);
-        if(FirebaseAuth.getInstance().getCurrentUser() != null) {
-            logoutBnt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(getApplicationContext(), getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
-                    logoutBnt.setVisibility(View.GONE);
-                }
-            });
-        }
-        else {
-            logoutBnt.setVisibility(View.GONE);
-        }
-
-        //Find bottom nav view
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setSelectedItemId(R.id.nav_profile);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
-                        overridePendingTransition(0, 0);
-                        break;
-                    case R.id.nav_search:
-                        startActivity(new Intent(getApplicationContext(), SearchMovieActivity.class));
-                        overridePendingTransition(0, 0);
-                        break;
-
-                    case R.id.nav_lists:
-                        startActivity(new Intent(getApplicationContext(), MovieListsActivity.class));
-                        overridePendingTransition(0, 0);
-                        break;
-
-                    case R.id.nav_profile:
-                        break;
-                }
-                return true;
-            }
-        });
 
     }
 

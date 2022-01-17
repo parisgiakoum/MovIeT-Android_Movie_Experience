@@ -1,30 +1,35 @@
-package com.regen21.moviet.Movie.Credits;
+package com.regen21.moviet.models.creditModels;
 
-import java.util.List;
-
-public class CastModel {
-
+public class CrewModel {
     private int id;
     private String name;
     private String profile_path;
-    private String character;
+    private String job;
 
     @Override
     public String toString() {
-        return "CastModel{" +
+        return "CrewModel{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", profile_path='" + profile_path + '\'' +
-                ", character='" + character + '\'' +
+                ", job='" + job + '\'' +
                 '}';
     }
 
-    public String getCharacter() {
-        return character;
+    public String getJob() {
+        return job;
     }
 
-    public void setCharacter(String character) {
-        this.character = character;
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -42,13 +47,4 @@ public class CastModel {
     public void setProfile_path(String profile_path) {
         this.profile_path = profile_path;
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
 }

@@ -1,4 +1,4 @@
-package com.regen21.moviet.Home.RecyclerView;
+package com.regen21.moviet.utils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.regen21.moviet.Movie.MovieActivity;
-import com.regen21.moviet.Movie.MovieModel;
+import com.regen21.moviet.activities.MovieActivity;
+import com.regen21.moviet.models.MovieModel;
 import com.regen21.moviet.R;
 import com.squareup.picasso.Picasso;
 

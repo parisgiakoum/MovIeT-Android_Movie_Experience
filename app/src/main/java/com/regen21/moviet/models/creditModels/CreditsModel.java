@@ -1,4 +1,4 @@
-package com.regen21.moviet.Movie.Credits;
+package com.regen21.moviet.models.creditModels;
 
 import java.util.List;
 

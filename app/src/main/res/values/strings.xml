@@ -29,7 +29,7 @@
     <string name="str_votes">votes</string>
 
 
-    <!-- Strings used for nav menu -->
+    <!-- Strings used for nav menuHandler -->
     <string name="home">Home</string>
     <string name="search">Search movie</string>
     <string name="lists">Lists</string>

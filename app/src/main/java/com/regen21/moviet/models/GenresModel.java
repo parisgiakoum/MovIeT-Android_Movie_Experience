@@ -1,4 +1,4 @@
-package com.regen21.moviet.Movie;
+package com.regen21.moviet.models;
 
 public class GenresModel {
     private int id;
