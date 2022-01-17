@@ -106,10 +106,18 @@ public class MovieActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         CreditsModel creditsModel = gson.fromJson(response,CreditsModel.class);
-                        RecyclerView castRecyclerView = findViewById(R.id.cast_recycler);
-                        RecyclerView crewRecyclerView = findViewById(R.id.crew_recycler);
-                        castRecyclerView.setAdapter(new CreditsAdapter(creditsModel.getCast(), null, CreditsMode.CAST));
-                        crewRecyclerView.setAdapter(new CreditsAdapter(null, creditsModel.getCrew(), CreditsMode.CREW));
+                        if (!creditsModel.getCast().isEmpty()) {
+                            TextView textViewCast = findViewById(R.id.txt_cast);
+                            textViewCast.setText(getString(R.string.str_cast));
+                            RecyclerView castRecyclerView = findViewById(R.id.cast_recycler);
+                            castRecyclerView.setAdapter(new CreditsAdapter(creditsModel.getCast(), null, CreditsMode.CAST));
+                        }
+                        if (!creditsModel.getCrew().isEmpty()) {
+                            TextView textViewCrew = findViewById(R.id.txt_crew);
+                            textViewCrew.setText(getString(R.string.str_crew));
+                            RecyclerView crewRecyclerView = findViewById(R.id.crew_recycler);
+                            crewRecyclerView.setAdapter(new CreditsAdapter(null, creditsModel.getCrew(), CreditsMode.CREW));
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -130,8 +138,12 @@ public class MovieActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         PopularModel popularModel = gson.fromJson(response,PopularModel.class);
-                        RecyclerView recommendationRecyclerView = findViewById(R.id.recommendation_recycler);
-                        recommendationRecyclerView.setAdapter(new HomeAdapter(popularModel.getPopular()));
+                        if (!popularModel.getPopular().isEmpty()) {
+                            TextView textViewRecommendation = findViewById(R.id.txt_recommendation);
+                            textViewRecommendation.setText(getString(R.string.str_recommendations));
+                            RecyclerView recommendationRecyclerView = findViewById(R.id.recommendation_recycler);
+                            recommendationRecyclerView.setAdapter(new HomeAdapter(popularModel.getPopular()));
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -160,18 +172,22 @@ public class MovieActivity extends AppCompatActivity {
         }
 
         RatingBar ratingBar = findViewById(R.id.rating);
-        ratingBar.setRating(movieModel.getVote_average());
-
-        String genres = movieModel.getGenres().get(0).getName();
-        for (int i=1; i<movieModel.getGenres().size();i++)
-        {
-            genres = genres + " - " + movieModel.getGenres().get(i).getName();
+        if(movieModel.getVote_average()!=0) {
+            ratingBar.setRating(movieModel.getVote_average());
+            TextView txtVoteAverage = findViewById(R.id.txt_vote_average);
+            txtVoteAverage.setText(String.valueOf(movieModel.getVote_average()));
+        } else {
+            ratingBar.setVisibility(View.GONE);
         }
-        TextView txtGenres = findViewById(R.id.txt_genres);
-        txtGenres.setText(genres);
 
-        TextView txtVoteAverage = findViewById(R.id.txt_vote_average);
-        txtVoteAverage.setText(String.valueOf(movieModel.getVote_average()));
+        if (!movieModel.getGenres().isEmpty()) {
+            String genres = movieModel.getGenres().get(0).getName();
+            for (int i = 1; i < movieModel.getGenres().size(); i++) {
+                genres = genres + " - " + movieModel.getGenres().get(i).getName();
+            }
+            TextView txtGenres = findViewById(R.id.txt_genres);
+            txtGenres.setText(genres);
+        }
 
         TextView txtOverview = findViewById(R.id.txt_overview);
         if(movieModel.getOverview()!=null) {
@@ -180,11 +196,15 @@ public class MovieActivity extends AppCompatActivity {
             txtOverview.setText(getResources().getString(R.string.str_null_overview));
         }
 
-        TextView txtRuntime = findViewById(R.id.txt_runtime);
-        txtRuntime.setText(String.format("%s: %d %s",getResources().getString(R.string.str_duration),movieModel.getRuntime(),getResources().getString(R.string.str_min)));
+        if (movieModel.getRuntime()!=0) {
+            TextView txtRuntime = findViewById(R.id.txt_runtime);
+            txtRuntime.setText(String.format("%s: %d %s", getResources().getString(R.string.str_duration), movieModel.getRuntime(), getResources().getString(R.string.str_min)));
+        }
 
         TextView txtStatus = findViewById(R.id.txt_status);
-        txtStatus.setText(movieModel.getRelease_date().substring(0,4) + " - " + movieModel.getStatus());
+        if (movieModel.getRelease_date().length() > 3) {
+            txtStatus.setText(movieModel.getRelease_date().substring(0, 4) + " - " + movieModel.getStatus());
+        }
 
         ImageView imgPoster = findViewById(R.id.img_poster);
         Picasso.get().load(IMG_BASE_URL + "w500/" + movieModel.getPoster_path()).into(imgPoster);

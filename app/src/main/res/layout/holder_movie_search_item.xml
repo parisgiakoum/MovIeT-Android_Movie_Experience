@@ -12,9 +12,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="79dp"
         android:layout_height="79dp"
-        android:layout_marginTop="15dp"
-        android:src="@drawable/parasite"/>
-
+        android:layout_marginTop="15dp" />
     <TextView
         android:id="@+id/holder_list_title"
         android:layout_width="match_parent"

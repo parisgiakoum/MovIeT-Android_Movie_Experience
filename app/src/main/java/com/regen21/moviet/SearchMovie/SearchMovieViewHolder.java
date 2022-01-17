@@ -60,7 +60,7 @@ public class SearchMovieViewHolder extends RecyclerView.ViewHolder {
         }
 
         ImageView imageView = itemView.findViewById(R.id.holder_list_img);
-        Picasso.get().load(IMG_BASE_URL + "w342/" + data.getPoster_path()).into(imageView);
+        Picasso.get().load(IMG_BASE_URL + "w342/" + data.getPoster_path()).error(R.drawable.ic_baseline_image_24).into(imageView);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

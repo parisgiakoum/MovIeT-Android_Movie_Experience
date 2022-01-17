@@ -60,7 +60,11 @@ public class MovieModel {
     }
 
     public String getOverview() {
-        return overview;
+        if (overview!=null) {
+            return overview;
+        } else {
+            return "";
+        }
     }
 
     public void setOverview(String overview) {
@@ -68,7 +72,11 @@ public class MovieModel {
     }
 
     public String getPoster_path() {
-        return poster_path;
+        if (poster_path != null) {
+            return poster_path;
+        } else {
+            return "";
+        }
     }
 
     public void setPoster_path(String poster_path) {
@@ -100,7 +108,11 @@ public class MovieModel {
     }
 
     public String getTagline() {
-        return tagline;
+        if (tagline != null) {
+            return tagline;
+        } else {
+            return "";
+        }
     }
 
     public void setTagline(String tagline) {
@@ -116,7 +128,11 @@ public class MovieModel {
     }
 
     public String getBackdrop_path() {
-        return backdrop_path;
+        if (backdrop_path != null) {
+            return backdrop_path;
+        } else {
+            return "";
+        }
     }
 
     public void setBackdrop_path(String backdrop_path) {
