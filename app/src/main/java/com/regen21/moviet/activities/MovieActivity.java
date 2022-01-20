@@ -1,5 +1,6 @@
 package com.regen21.moviet.activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
@@ -21,8 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.regen21.moviet.Dao;
 import com.regen21.moviet.models.MovieResultsModel;
 import com.regen21.moviet.adapters.HomeAdapter;
 import com.regen21.moviet.adapters.CreditsAdapter;
@@ -41,8 +48,9 @@ public class MovieActivity extends AppCompatActivity {
 
     private Gson gson;
     private RequestQueue queue;
-    private boolean clicked = false;
+    private boolean added = false;
     private int movieID;
+    private MovieModel movieModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +76,7 @@ public class MovieActivity extends AppCompatActivity {
     @Override
     public void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        shrinkFabOnScroll();
+        implementFabFunctionality();
 
         sendAPIRequest(movieID);
 
@@ -157,7 +165,6 @@ public class MovieActivity extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     public void setMovie(String response) {
-        MovieModel movieModel;
 
         // Set basic movie UI
         movieModel = gson.fromJson(response,MovieModel.class);
@@ -214,7 +221,7 @@ public class MovieActivity extends AppCompatActivity {
         Picasso.get().load(IMG_BASE_URL + "w1280/" + movieModel.getBackdrop_path()).into(imgBackdrop);
     }
 
-    public void shrinkFabOnScroll() {
+    public void implementFabFunctionality() {
         // register the extended floating action Button
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.extended_fab);
 
@@ -245,17 +252,52 @@ public class MovieActivity extends AppCompatActivity {
         });
 
 
-        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (!clicked) {
-                    clicked = true;
+        Dao dao = new Dao();
+
+
+        dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.child(String.valueOf(movieID)).exists()) {
                     extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_check);
                     extendedFloatingActionButton.setText(R.string.str_added);
+                    added = true;
                 }
                 else {
-                    clicked = false;
                     extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_library_add_24);
                     extendedFloatingActionButton.setText(R.string.app_name);
+                    added = false;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+            // Add movie to MovIeT List
+        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (!added) {
+                    // Add movie
+                    dao.addMoviet(movieModel, getApplicationContext())
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                                }
+                            });
+                }
+                else {
+                    // Remove movie
+                    dao.removeMoviet(String.valueOf(movieID))
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                                }
+                            });
                 }
             }
         });
