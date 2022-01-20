@@ -25,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -222,85 +223,83 @@ public class MovieActivity extends AppCompatActivity {
     }
 
     public void implementFabFunctionality() {
-        // register the extended floating action Button
         ExtendedFloatingActionButton extendedFloatingActionButton = findViewById(R.id.extended_fab);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            NestedScrollView nestedScrollView = findViewById(R.id.nested_scroll_view);
 
-        // register the nestedScrollView from the main layout
-        NestedScrollView nestedScrollView = findViewById(R.id.nested_scroll_view);
+            nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+                @Override
+                public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                    // the delay of the extension of the FAB is set for 12 items
+                    if (scrollY > oldScrollY + 12 && extendedFloatingActionButton.isExtended()) {
+                        extendedFloatingActionButton.shrink();
+                    }
 
-        // handle the nestedScrollView behaviour with OnScrollChangeListener
-        // to extend or shrink the Extended Floating Action Button
-        nestedScrollView.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
-            @Override
-            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
-                // the delay of the extension of the FAB is set for 12 items
-                if (scrollY > oldScrollY + 12 && extendedFloatingActionButton.isExtended()) {
-                    extendedFloatingActionButton.shrink();
+                    // the delay of the extension of the FAB is set for 12 items
+                    if (scrollY < oldScrollY - 12 && !extendedFloatingActionButton.isExtended()) {
+                        extendedFloatingActionButton.extend();
+                    }
+
+                    // if the nestedScrollView is at the first item of the list then the
+                    // extended floating action should be in extended state
+                    if (scrollY == 0) {
+                        extendedFloatingActionButton.extend();
+                    }
+                }
+            });
+
+
+            Dao dao = new Dao();
+
+
+            dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.child(String.valueOf(movieID)).exists()) {
+                        extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_check);
+                        extendedFloatingActionButton.setText(R.string.str_added);
+                        added = true;
+                    } else {
+                        extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_library_add_24);
+                        extendedFloatingActionButton.setText(R.string.app_name);
+                        added = false;
+                    }
                 }
 
-                // the delay of the extension of the FAB is set for 12 items
-                if (scrollY < oldScrollY - 12 && !extendedFloatingActionButton.isExtended()) {
-                    extendedFloatingActionButton.extend();
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
-
-                // if the nestedScrollView is at the first item of the list then the
-                // extended floating action should be in extended state
-                if (scrollY == 0) {
-                    extendedFloatingActionButton.extend();
-                }
-            }
-        });
-
-
-        Dao dao = new Dao();
-
-
-        dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(String.valueOf(movieID)).exists()) {
-                    extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_check);
-                    extendedFloatingActionButton.setText(R.string.str_added);
-                    added = true;
-                }
-                else {
-                    extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_library_add_24);
-                    extendedFloatingActionButton.setText(R.string.app_name);
-                    added = false;
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+            });
 
             // Add movie to MovIeT List
-        extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (!added) {
-                    // Add movie
-                    dao.addMoviet(movieModel, getApplicationContext())
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                }
-                            });
+            extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (!added) {
+                        // Add movie
+                        dao.addMoviet(movieModel, getApplicationContext())
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    } else {
+                        // Remove movie
+                        dao.removeMoviet(String.valueOf(movieID))
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
                 }
-                else {
-                    // Remove movie
-                    dao.removeMoviet(String.valueOf(movieID))
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                }
-                            });
-                }
-            }
-        });
+            });
+        }
+        else {
+            extendedFloatingActionButton.setVisibility(View.GONE);
+        }
     }
 
 

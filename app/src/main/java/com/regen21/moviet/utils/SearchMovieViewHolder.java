@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -75,52 +76,54 @@ public class SearchMovieViewHolder extends RecyclerView.ViewHolder {
             }
         });
 
+        // MovIeT button
         Button addIcon = itemView.findViewById(R.id.holder_list_save_icon);
         Dao dao = new Dao();
 
-        dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.child(String.valueOf(data.getId())).exists()) {
-                    addIcon.setBackgroundResource(R.drawable.ic_baseline_check);
-                    added = true;
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.child(String.valueOf(data.getId())).exists()) {
+                        addIcon.setBackgroundResource(R.drawable.ic_baseline_check);
+                        added = true;
+                    } else {
+                        addIcon.setBackgroundResource(R.drawable.ic_baseline_library_add_24);
+                        added = false;
+                    }
                 }
-                else {
-                    addIcon.setBackgroundResource(R.drawable.ic_baseline_library_add_24);
-                    added = false;
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
                 }
-            }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-        addIcon.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                if (!added) {
-                    dao.addMoviet(data, context)
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                }
-                            });
+            addIcon.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    if (!added) {
+                        dao.addMoviet(data, context)
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    } else {
+                        dao.removeMoviet(String.valueOf(data.getId()))
+                                .addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                    }
                 }
-                else {
-                    dao.removeMoviet(String.valueOf(data.getId()))
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                }
-                            });
-                }
-            }
-        });
-
-
+            });
+        }
+        else {
+            addIcon.setVisibility(View.GONE);
+        }
     }
 
 }

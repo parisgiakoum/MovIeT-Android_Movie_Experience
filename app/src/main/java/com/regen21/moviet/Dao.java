@@ -29,9 +29,15 @@ public class Dao {
     }
 
     public Dao() {
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        String userID  = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        userReference = db.getReference("Users").child(userID);
+        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+            FirebaseDatabase db = FirebaseDatabase.getInstance();
+            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            userReference = db.getReference("Users").child(userID);
+        }
+        else
+        {
+            userReference = null;
+        }
     }
 
     public Task<Void> addMoviet(MovieModel movie, Context context) {
