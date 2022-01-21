@@ -9,12 +9,12 @@
     android:layout_width="match_parent">
 
     <androidx.core.widget.NestedScrollView
-                android:id="@+id/nested_scroll_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="false"
-                android:orientation="vertical"
-                tools:context=".activities.MovieActivity">
+        android:id="@+id/nested_scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="false"
+        android:orientation="vertical"
+        tools:context=".activities.MovieActivity">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -25,9 +25,9 @@
                 android:id="@+id/img_backdrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/img_poster"
@@ -44,9 +44,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:textColor="@color/light_blue"
                 android:textSize="25sp"
                 android:textStyle="bold"
-                android:textColor="@color/light_blue"
                 app:layout_constraintBottom_toTopOf="@id/txt_tagline"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -58,9 +58,9 @@
                 android:id="@+id/txt_tagline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="15dp"
                 android:textAlignment="center"
                 android:textStyle="italic"
-                android:paddingBottom="15dp"
                 app:layout_constraintBottom_toTopOf="@id/rating"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -71,43 +71,43 @@
             <!-- -->
             <RatingBar
                 android:id="@+id/rating"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="?android:attr/ratingBarStyleSmall"
-                android:numStars="10"
-                android:stepSize="0.1"
                 android:isIndicator="true"
+                android:numStars="10"
                 android:paddingBottom="10dp"
-                app:layout_constraintTop_toBottomOf="@id/txt_tagline"
+                android:stepSize="0.1"
+                app:layout_constraintBottom_toTopOf="@id/txt_genres"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/txt_vote_average"
-                app:layout_constraintBottom_toTopOf="@id/txt_genres"
-                app:layout_constraintHorizontal_chainStyle="packed"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_tagline" />
 
             <TextView
                 android:id="@+id/txt_vote_average"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@id/txt_genres"
                 app:layout_constraintEnd_toStartOf="@id/txt_vote_count"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/rating"
                 app:layout_constraintTop_toBottomOf="@+id/txt_tagline"
-                app:layout_constraintHorizontal_chainStyle="packed"
                 tools:text="@string/str_rating" />
 
             <TextView
                 android:id="@+id/txt_vote_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="10dp"
                 android:paddingRight="5dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@id/txt_genres"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toEndOf="@id/txt_vote_average"
                 app:layout_constraintTop_toBottomOf="@+id/txt_tagline"
-                app:layout_constraintHorizontal_chainStyle="packed"
                 tools:text="@string/str_votes" />
 
 
@@ -137,11 +137,11 @@
                 android:id="@+id/txt_runtime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
                 app:layout_constraintBottom_toTopOf="@id/txt_overview"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_status"
-                android:paddingBottom="20dp"
                 tools:text="@string/str_duration" />
 
             <View
@@ -157,13 +157,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
+                android:paddingVertical="10dp"
                 android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@id/bottom_ovrerview_view"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txt_runtime"
-                app:layout_constraintBottom_toTopOf="@id/bottom_ovrerview_view"
                 app:layout_constraintVertical_chainStyle="packed"
-                android:paddingVertical="10dp"
                 tools:text="overview" />
 
             <View
@@ -171,32 +171,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/grey"
-                app:layout_constraintTop_toBottomOf="@id/txt_overview"
-                app:layout_constraintBottom_toBottomOf="@id/txt_cast" />
+                app:layout_constraintBottom_toBottomOf="@id/txt_cast"
+                app:layout_constraintTop_toBottomOf="@id/txt_overview" />
 
             <TextView
                 android:id="@+id/txt_cast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                tools:text="@string/str_cast"
+                android:textColor="@color/light_blue"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/light_blue"
                 app:layout_constraintBottom_toTopOf="@id/cast_recycler"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/bottom_ovrerview_view" />
+                app:layout_constraintTop_toBottomOf="@id/bottom_ovrerview_view"
+                tools:text="@string/str_cast" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cast_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
                 android:layout_marginBottom="15dp"
+                android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/cast_recycler"
                 app:layout_constraintTop_toBottomOf="@id/txt_cast" />
-
 
 
             <TextView
@@ -204,13 +203,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                tools:text="@string/str_crew"
+                android:textColor="@color/light_blue"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/light_blue"
                 app:layout_constraintBottom_toTopOf="@id/crew_recycler"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cast_recycler" />
+                app:layout_constraintTop_toBottomOf="@id/cast_recycler"
+                tools:text="@string/str_crew" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/crew_recycler"
@@ -218,8 +217,8 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintTop_toBottomOf="@id/txt_crew"
-                app:layout_constraintBottom_toTopOf="@id/txt_recommendation"/>
+                app:layout_constraintBottom_toTopOf="@id/txt_recommendation"
+                app:layout_constraintTop_toBottomOf="@id/txt_crew" />
 
 
             <TextView
@@ -227,33 +226,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                tools:text="@string/str_recommendations"
+                android:textColor="@color/light_blue"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="@color/light_blue"
-                app:layout_constraintTop_toBottomOf="@id/crew_recycler"
+                app:layout_constraintBottom_toTopOf="@id/recommendation_recycler"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/recommendation_recycler"/>
+                app:layout_constraintTop_toBottomOf="@id/crew_recycler"
+                tools:text="@string/str_recommendations" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recommendation_recycler"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:layout_marginTop="15dp"
                 app:layout_constraintTop_toBottomOf="@id/txt_recommendation" />
+
+
+            <View
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"
+                android:alpha="0.5"
+                android:background="@color/grey"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/movie_back_btn"
-                android:layout_width="40dp"
-                android:layout_height="60dp"
-                app:icon="@drawable/ic_baseline_arrow_back_24"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="5dp"
+                android:layout_marginTop="25dp"
+                app:icon="@drawable/ic_baseline_arrow_back_24"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
