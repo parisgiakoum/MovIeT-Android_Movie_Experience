@@ -30,6 +30,10 @@ public class SearchMovieActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private MovieResultsModel model;
 
+    // Do nothing on Back btn
+    @Override
+    public void onBackPressed() {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

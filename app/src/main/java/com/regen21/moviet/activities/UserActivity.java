@@ -1,10 +1,6 @@
 package com.regen21.moviet.activities;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -12,6 +8,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.regen21.moviet.activities.authentication.LoginActivity;
 import com.regen21.moviet.models.User;
 import com.regen21.moviet.R;
 import com.regen21.moviet.utils.MenuHandler;
@@ -20,11 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Icon;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -36,17 +30,27 @@ public class UserActivity extends AppCompatActivity {
     private DatabaseReference reference;
     private String userID;
 
+    // Do nothing on Back btn
+    @Override
+    public void onBackPressed() {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+        // check if user is logged in
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+        }
+
 
         MenuHandler menuHandler = new MenuHandler(this);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
-
 
         TextView textViewUsername, textViewEmail;
         ImageButton imageButtonEdit, imageButtonConfirmEdit;
@@ -57,8 +61,6 @@ public class UserActivity extends AppCompatActivity {
         imageButtonEdit = findViewById(R.id.edit_username_icon);
         editTextUsername = findViewById(R.id.editTextUsername);
         imageButtonConfirmEdit = findViewById(R.id.confirm_username_icon);
-
-
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

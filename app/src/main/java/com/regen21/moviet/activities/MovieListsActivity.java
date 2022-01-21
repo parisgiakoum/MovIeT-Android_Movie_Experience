@@ -18,6 +18,10 @@ import android.widget.Toast;
 
 public class MovieListsActivity extends AppCompatActivity {
 
+    // Do nothing on Back btn
+    @Override
+    public void onBackPressed() {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

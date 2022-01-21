@@ -31,6 +31,10 @@ public class HomeActivity extends AppCompatActivity {
     private Gson gson;
     private RequestQueue queue;
 
+    // Do nothing on Back btn
+    @Override
+    public void onBackPressed() {    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

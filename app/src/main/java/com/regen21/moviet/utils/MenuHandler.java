@@ -28,6 +28,8 @@ public class MenuHandler {
         this.activity = activity;
 
         BottomNavigationView bottomNavigationView = activity.findViewById(R.id.bottom_navigation);
+
+        // Logout Btn
         Button logoutBnt = activity.findViewById(R.id.logout_btn);
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             logoutBnt.setOnClickListener(new View.OnClickListener() {
@@ -36,6 +38,8 @@ public class MenuHandler {
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(activity.getApplicationContext(), activity.getString(R.string.logout_success), Toast.LENGTH_SHORT).show();
                     logoutBnt.setVisibility(View.GONE);
+                    activity.finish();
+                    activity.startActivity(activity.getIntent());
                 }
             });
         } else {
