@@ -22,8 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -49,7 +47,7 @@ public class MovieActivity extends AppCompatActivity {
 
     private Gson gson;
     private RequestQueue queue;
-    private boolean added = false;
+    private boolean isMovied = false;
     private int movieID;
     private MovieModel movieModel;
 
@@ -251,18 +249,17 @@ public class MovieActivity extends AppCompatActivity {
 
             Dao dao = new Dao();
 
-
-            dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
+            dao.getMovietsRef().child(dao.getUserID()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.child(String.valueOf(movieID)).exists()) {
                         extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_check);
                         extendedFloatingActionButton.setText(R.string.str_added);
-                        added = true;
+                        isMovied = true;
                     } else {
                         extendedFloatingActionButton.setIconResource(R.drawable.ic_baseline_library_add_24);
                         extendedFloatingActionButton.setText(R.string.app_name);
-                        added = false;
+                        isMovied = false;
                     }
                 }
 
@@ -275,25 +272,7 @@ public class MovieActivity extends AppCompatActivity {
             // Add movie to MovIeT List
             extendedFloatingActionButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (!added) {
-                        // Add movie
-                        dao.addMoviet(movieModel, getApplicationContext())
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                    } else {
-                        // Remove movie
-                        dao.removeMoviet(String.valueOf(movieID))
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(getApplicationContext(), getApplicationContext().getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                    }
+                    dao.updateMoviet(String.valueOf(movieModel.getId()), getApplicationContext(), isMovied);
                 }
             });
         }

@@ -1,40 +1,65 @@
 package com.regen21.moviet;
 
 import android.content.Context;
+import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.regen21.moviet.models.MovieModel;
 
 public class Dao {
-    private DatabaseReference userReference;
 
-    public DatabaseReference getUserReference() {
-        return userReference;
+    private DatabaseReference movietsRef, userMovietsRef;
+    private String userID;
+
+    public DatabaseReference getMovietsRef() {
+        return movietsRef;
     }
+
+    public String getUserID() {return userID;}
 
     public Dao() {
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             FirebaseDatabase db = FirebaseDatabase.getInstance();
-            String userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            userReference = db.getReference("Users").child(userID);
-        }
-        else
-        {
-            userReference = null;
+            userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            movietsRef = db.getReference("UserMoviets");
+            userMovietsRef = db.getReference("Moviets");
         }
     }
 
-    public Task<Void> addMoviet(MovieModel movie, Context context) {
-        return userReference.child("MovIeTs").child(String.valueOf(movie.getId())).setValue(movie);
-    }
+    public void updateMoviet(String movieId, Context context, boolean isMovied) {
+        if (!isMovied) {
+            movietsRef.child(userID).child(movieId).setValue(movieId).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                }
+            });
+            userMovietsRef.child(movieId).child(userID).setValue(userID).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+        else {
+            movietsRef.child(userID).child(movieId).removeValue().addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                    }
+            });
+            userMovietsRef.child(movieId).child(userID).removeValue().addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
+                }
+            });
 
-    public Task<Void> removeMoviet(String movieId) {
-        return userReference.child("MovIeTs").child(movieId).removeValue();
+        }
     }
 
 

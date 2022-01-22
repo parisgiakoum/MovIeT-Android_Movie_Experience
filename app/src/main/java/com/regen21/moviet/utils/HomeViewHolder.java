@@ -10,9 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,7 +25,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
 
 
     public static final String IMG_BASE_URL = "https://image.tmdb.org/t/p/";
-    private boolean added = false;
+    private boolean isMovied = false;
 
 
     public HomeViewHolder(@NonNull View itemView) {
@@ -84,18 +82,17 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
         Dao dao = new Dao();
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            dao.getUserReference().child("MovIeTs").addValueEventListener(new ValueEventListener() {
+            dao.getMovietsRef().child(dao.getUserID()).addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.child(String.valueOf(data.getId())).exists()) {
                         addIcon.setBackgroundResource(R.drawable.ic_baseline_check);
-                        added = true;
+                        isMovied = true;
                     } else {
                         addIcon.setBackgroundResource(R.drawable.ic_baseline_library_add_24);
-                        added = false;
+                        isMovied = false;
                     }
                 }
-
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
@@ -103,23 +100,7 @@ public class HomeViewHolder extends RecyclerView.ViewHolder {
 
             addIcon.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    if (!added) {
-                        dao.addMoviet(data, context)
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                    } else {
-                        dao.removeMoviet(String.valueOf(data.getId()))
-                                .addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(context, context.getString(R.string.error_default), Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                    }
+                    dao.updateMoviet(String.valueOf(data.getId()), context, isMovied);
                 }
             });
         }
